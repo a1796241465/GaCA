@@ -1,0 +1,33 @@
+{
+  "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.4.0",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "sklearn": "1.4.2",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "arguments": {
+    "output_dir": "D:\\EC\\new_str\\Modify\\journal_rerun_20260727",
+    "feature_root": "D:\\EC\\new_str\\Modify\\journal_rerun_20260727\\feature_store",
+    "models": [
+      "cross_attention"
+    ],
+    "batch_size": 128,
+    "cross_attention_batch_size": 8,
+    "cross_attention_dim": 256,
+    "cross_attention_heads": 4,
+    "hidden_dim": 512,
+    "dropout": 0.5,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.005,
+    "label_smoothing": 0.1,
+    "validation_ratio": 0.1,
+    "max_epochs": 120,
+    "patience": 30,
+    "refit_only_epochs": 102,
+    "seed": 42,
+    "workers": 0,
+    "amp": true
+  }
+}

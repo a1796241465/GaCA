@@ -1,0 +1,15 @@
+{
+  "effective_training_proteins": 13671,
+  "fitting_proteins": 12303,
+  "validation_proteins": 1368,
+  "level4_labels": 3811,
+  "evaluated_test_proteins": {
+    "lt30": 243,
+    "30_50": 477
+  },
+  "gaca_level4_accuracy": {
+    "lt30": 0.7325102880658436,
+    "30_50": 0.8490566037735849
+  },
+  "seed": 42
+}

@@ -1,0 +1,126 @@
+[data] {"effective_training_samples": 13671, "fitting_samples": 12303, "validation_samples": 1368, "training_classes": 3811, "fitting_classes": 3811, "test_samples": {"lt30": 243, "30_50": 477}}
+/home/lihaotian/miniconda3/envs/lht/lib/python3.9/site-packages/transformers/utils/generic.py:441: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+[model] cross_attention: parameters=5,636,325, batch=8
+[tune] cross_attention epoch=001 train_loss=7.43211 train_acc=0.09624 val_loss=5.47332 val_acc=0.36915
+[tune] cross_attention epoch=002 train_loss=5.74661 train_acc=0.35788 val_loss=4.16200 val_acc=0.55775
+[tune] cross_attention epoch=003 train_loss=4.86915 train_acc=0.47273 val_loss=3.51062 val_acc=0.63816
+[tune] cross_attention epoch=004 train_loss=4.26573 train_acc=0.54442 val_loss=3.10071 val_acc=0.69225
+[tune] cross_attention epoch=005 train_loss=3.81832 train_acc=0.59229 val_loss=2.89025 val_acc=0.72807
+[tune] cross_attention epoch=006 train_loss=3.45549 train_acc=0.63098 val_loss=2.74794 val_acc=0.75073
+[tune] cross_attention epoch=007 train_loss=3.15173 train_acc=0.66301 val_loss=2.70848 val_acc=0.77558
+[tune] cross_attention epoch=008 train_loss=2.90362 train_acc=0.69585 val_loss=2.66863 val_acc=0.79605
+[tune] cross_attention epoch=009 train_loss=2.69275 train_acc=0.71576 val_loss=2.59612 val_acc=0.80994
+[tune] cross_attention epoch=010 train_loss=2.50141 train_acc=0.74120 val_loss=2.62404 val_acc=0.81360
+[tune] cross_attention epoch=011 train_loss=2.35304 train_acc=0.75884 val_loss=2.57072 val_acc=0.82383
+[tune] cross_attention epoch=012 train_loss=2.21266 train_acc=0.77737 val_loss=2.48048 val_acc=0.81871
+[tune] cross_attention epoch=013 train_loss=2.10481 train_acc=0.80167 val_loss=2.48486 val_acc=0.82968
+[tune] cross_attention epoch=014 train_loss=1.99758 train_acc=0.82378 val_loss=2.38968 val_acc=0.83041
+[tune] cross_attention epoch=015 train_loss=1.92897 train_acc=0.83866 val_loss=2.36635 val_acc=0.83187
+[tune] cross_attention epoch=016 train_loss=1.87863 train_acc=0.85248 val_loss=2.37595 val_acc=0.83699
+[tune] cross_attention epoch=017 train_loss=1.82794 train_acc=0.86702 val_loss=2.37775 val_acc=0.84576
+[tune] cross_attention epoch=018 train_loss=1.78918 train_acc=0.87718 val_loss=2.37521 val_acc=0.84064
+[tune] cross_attention epoch=019 train_loss=1.76151 train_acc=0.88621 val_loss=2.41435 val_acc=0.83699
+[tune] cross_attention epoch=020 train_loss=1.73590 train_acc=0.89450 val_loss=2.34065 val_acc=0.83991
+[tune] cross_attention epoch=021 train_loss=1.71224 train_acc=0.90092 val_loss=2.39562 val_acc=0.83260
+[tune] cross_attention epoch=022 train_loss=1.69266 train_acc=0.90848 val_loss=2.36626 val_acc=0.83699
+[tune] cross_attention epoch=023 train_loss=1.67840 train_acc=0.91149 val_loss=2.27309 val_acc=0.84722
+[tune] cross_attention epoch=024 train_loss=1.66317 train_acc=0.91628 val_loss=2.31606 val_acc=0.84064
+[tune] cross_attention epoch=025 train_loss=1.64579 train_acc=0.92189 val_loss=2.26700 val_acc=0.83918
+[tune] cross_attention epoch=026 train_loss=1.63628 train_acc=0.92612 val_loss=2.28382 val_acc=0.84722
+[tune] cross_attention epoch=027 train_loss=1.61700 train_acc=0.93376 val_loss=2.29007 val_acc=0.84722
+[tune] cross_attention epoch=028 train_loss=1.61445 train_acc=0.93384 val_loss=2.27343 val_acc=0.84357
+[tune] cross_attention epoch=029 train_loss=1.60969 train_acc=0.93449 val_loss=2.27367 val_acc=0.84137
+[tune] cross_attention epoch=030 train_loss=1.58914 train_acc=0.94001 val_loss=2.19535 val_acc=0.84284
+[tune] cross_attention epoch=031 train_loss=1.58499 train_acc=0.94392 val_loss=2.23516 val_acc=0.83845
+[tune] cross_attention epoch=032 train_loss=1.58086 train_acc=0.94538 val_loss=2.21713 val_acc=0.83406
+[tune] cross_attention epoch=033 train_loss=1.56906 train_acc=0.94863 val_loss=2.26513 val_acc=0.83480
+[tune] cross_attention epoch=034 train_loss=1.56005 train_acc=0.95440 val_loss=2.21970 val_acc=0.84284
+[tune] cross_attention epoch=035 train_loss=1.55474 train_acc=0.95416 val_loss=2.21793 val_acc=0.83991
+[tune] cross_attention epoch=036 train_loss=1.54722 train_acc=0.95513 val_loss=2.27676 val_acc=0.84503
+[tune] cross_attention epoch=037 train_loss=1.54037 train_acc=0.95700 val_loss=2.21141 val_acc=0.84357
+[tune] cross_attention epoch=038 train_loss=1.52856 train_acc=0.96139 val_loss=2.21616 val_acc=0.83918
+[tune] cross_attention epoch=039 train_loss=1.52409 train_acc=0.96359 val_loss=2.20739 val_acc=0.83991
+[tune] cross_attention epoch=040 train_loss=1.51828 train_acc=0.96456 val_loss=2.19914 val_acc=0.84357
+[tune] cross_attention epoch=041 train_loss=1.51777 train_acc=0.96277 val_loss=2.17375 val_acc=0.83918
+[tune] cross_attention epoch=042 train_loss=1.51006 train_acc=0.96741 val_loss=2.21411 val_acc=0.84722
+[tune] cross_attention epoch=043 train_loss=1.50885 train_acc=0.96676 val_loss=2.20783 val_acc=0.83918
+[tune] cross_attention epoch=044 train_loss=1.50025 train_acc=0.96936 val_loss=2.22432 val_acc=0.83845
+[tune] cross_attention epoch=045 train_loss=1.49878 train_acc=0.96871 val_loss=2.16713 val_acc=0.84795
+[tune] cross_attention epoch=046 train_loss=1.49550 train_acc=0.97155 val_loss=2.21008 val_acc=0.84357
+[tune] cross_attention epoch=047 train_loss=1.49238 train_acc=0.97139 val_loss=2.21170 val_acc=0.84357
+[tune] cross_attention epoch=048 train_loss=1.48826 train_acc=0.97310 val_loss=2.17467 val_acc=0.84211
+[tune] cross_attention epoch=049 train_loss=1.48019 train_acc=0.97440 val_loss=2.15412 val_acc=0.84357
+[tune] cross_attention epoch=050 train_loss=1.47655 train_acc=0.97334 val_loss=2.17763 val_acc=0.84649
+[tune] cross_attention epoch=051 train_loss=1.47921 train_acc=0.97610 val_loss=2.18691 val_acc=0.83845
+[tune] cross_attention epoch=052 train_loss=1.47440 train_acc=0.97651 val_loss=2.17722 val_acc=0.83699
+[tune] cross_attention epoch=053 train_loss=1.46610 train_acc=0.97846 val_loss=2.19708 val_acc=0.84137
+[tune] cross_attention epoch=054 train_loss=1.46282 train_acc=0.98041 val_loss=2.17766 val_acc=0.84284
+[tune] cross_attention epoch=055 train_loss=1.46380 train_acc=0.97992 val_loss=2.14014 val_acc=0.84503
+[tune] cross_attention epoch=056 train_loss=1.46021 train_acc=0.98114 val_loss=2.15730 val_acc=0.84284
+[tune] cross_attention epoch=057 train_loss=1.45837 train_acc=0.98025 val_loss=2.18873 val_acc=0.84284
+[tune] cross_attention epoch=058 train_loss=1.45929 train_acc=0.98090 val_loss=2.21688 val_acc=0.84357
+[tune] cross_attention epoch=059 train_loss=1.45617 train_acc=0.98017 val_loss=2.19150 val_acc=0.83991
+[tune] cross_attention epoch=060 train_loss=1.45664 train_acc=0.98122 val_loss=2.21622 val_acc=0.84576
+[tune] cross_attention epoch=061 train_loss=1.44934 train_acc=0.98277 val_loss=2.21870 val_acc=0.84211
+[tune] cross_attention epoch=062 train_loss=1.44965 train_acc=0.98179 val_loss=2.23147 val_acc=0.84137
+[tune] cross_attention epoch=063 train_loss=1.44799 train_acc=0.98114 val_loss=2.20075 val_acc=0.84722
+[tune] cross_attention epoch=064 train_loss=1.44477 train_acc=0.98326 val_loss=2.19918 val_acc=0.84064
+[tune] cross_attention epoch=065 train_loss=1.44750 train_acc=0.98301 val_loss=2.12563 val_acc=0.83845
+[tune] cross_attention epoch=066 train_loss=1.44319 train_acc=0.98464 val_loss=2.16653 val_acc=0.83991
+[tune] cross_attention epoch=067 train_loss=1.44166 train_acc=0.98480 val_loss=2.21578 val_acc=0.83480
+[tune] cross_attention epoch=068 train_loss=1.43950 train_acc=0.98383 val_loss=2.23020 val_acc=0.83845
+[tune] cross_attention epoch=069 train_loss=1.43493 train_acc=0.98716 val_loss=2.20262 val_acc=0.84503
+[tune] cross_attention epoch=070 train_loss=1.43704 train_acc=0.98594 val_loss=2.21067 val_acc=0.83918
+[tune] cross_attention epoch=071 train_loss=1.43534 train_acc=0.98439 val_loss=2.17855 val_acc=0.84357
+[tune] cross_attention epoch=072 train_loss=1.43418 train_acc=0.98691 val_loss=2.14843 val_acc=0.84357
+[tune] cross_attention epoch=073 train_loss=1.42874 train_acc=0.98732 val_loss=2.13733 val_acc=0.84137
+[tune] cross_attention epoch=074 train_loss=1.42369 train_acc=0.98821 val_loss=2.22077 val_acc=0.84284
+[tune] cross_attention epoch=075 train_loss=1.43113 train_acc=0.98724 val_loss=2.16985 val_acc=0.84722
+[refit] cross_attention epoch=001/045 loss=7.26470 acc=0.12172
+[refit] cross_attention epoch=002/045 loss=5.46856 acc=0.39551
+[refit] cross_attention epoch=003/045 loss=4.57663 acc=0.50808
+[refit] cross_attention epoch=004/045 loss=3.98011 acc=0.57677
+[refit] cross_attention epoch=005/045 loss=3.55539 acc=0.62775
+[refit] cross_attention epoch=006/045 loss=3.21834 acc=0.66374
+[refit] cross_attention epoch=007/045 loss=2.94633 acc=0.69402
+[refit] cross_attention epoch=008/045 loss=2.71722 acc=0.72028
+[refit] cross_attention epoch=009/045 loss=2.53833 acc=0.74135
+[refit] cross_attention epoch=010/045 loss=2.38213 acc=0.76081
+[refit] cross_attention epoch=011/045 loss=2.23980 acc=0.77931
+[refit] cross_attention epoch=012/045 loss=2.12572 acc=0.79848
+[refit] cross_attention epoch=013/045 loss=2.03647 acc=0.82035
+[refit] cross_attention epoch=014/045 loss=1.96076 acc=0.83578
+[refit] cross_attention epoch=015/045 loss=1.88992 acc=0.85144
+[refit] cross_attention epoch=016/045 loss=1.84214 acc=0.86299
+[refit] cross_attention epoch=017/045 loss=1.80691 acc=0.87075
+[refit] cross_attention epoch=018/045 loss=1.77038 acc=0.87938
+[refit] cross_attention epoch=019/045 loss=1.74167 acc=0.89145
+[refit] cross_attention epoch=020/045 loss=1.71995 acc=0.89591
+[refit] cross_attention epoch=021/045 loss=1.70722 acc=0.90052
+[refit] cross_attention epoch=022/045 loss=1.67811 acc=0.90783
+[refit] cross_attention epoch=023/045 loss=1.66827 acc=0.91427
+[refit] cross_attention epoch=024/045 loss=1.65633 acc=0.91829
+[refit] cross_attention epoch=025/045 loss=1.63519 acc=0.92334
+[refit] cross_attention epoch=026/045 loss=1.62453 acc=0.92561
+[refit] cross_attention epoch=027/045 loss=1.61562 acc=0.92824
+[refit] cross_attention epoch=028/045 loss=1.60637 acc=0.93329
+[refit] cross_attention epoch=029/045 loss=1.59587 acc=0.93804
+[refit] cross_attention epoch=030/045 loss=1.58709 acc=0.93929
+[refit] cross_attention epoch=031/045 loss=1.58436 acc=0.94170
+[refit] cross_attention epoch=032/045 loss=1.56245 acc=0.94982
+[refit] cross_attention epoch=033/045 loss=1.56108 acc=0.94924
+[refit] cross_attention epoch=034/045 loss=1.55287 acc=0.94989
+[refit] cross_attention epoch=035/045 loss=1.54144 acc=0.95479
+[refit] cross_attention epoch=036/045 loss=1.53555 acc=0.95735
+[refit] cross_attention epoch=037/045 loss=1.53687 acc=0.95538
+[refit] cross_attention epoch=038/045 loss=1.52074 acc=0.96116
+[refit] cross_attention epoch=039/045 loss=1.52014 acc=0.96204
+[refit] cross_attention epoch=040/045 loss=1.51926 acc=0.96240
+[refit] cross_attention epoch=041/045 loss=1.51101 acc=0.96357
+[refit] cross_attention epoch=042/045 loss=1.50850 acc=0.96577
+[refit] cross_attention epoch=043/045 loss=1.49832 acc=0.96818
+[refit] cross_attention epoch=044/045 loss=1.50003 acc=0.96774
+[refit] cross_attention epoch=045/045 loss=1.49552 acc=0.96913
+[test] cross_attention lt30: L1=0.88477 L2=0.82716 L3=0.80247 L4=0.71193
+[test] cross_attention 30_50: L1=0.96017 L2=0.92034 L3=0.89308 L4=0.83438

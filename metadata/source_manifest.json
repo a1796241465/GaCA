@@ -1,0 +1,567 @@
+[
+  {
+    "source": "pipeline/run_unified_rerun.py",
+    "destination": "gaca/train.py",
+    "source_sha256": "7e69aecf3595e54dc432dbc473dbf567883dcc9425b940f9495fe5073146fd0e"
+  },
+  {
+    "source": "pipeline/run_classical_baselines.py",
+    "destination": "baselines/classical/train.py",
+    "source_sha256": "7aeb4373505fa3035986c1cc35b74b30edbadb38125b38f0fbb5f13b294c7683"
+  },
+  {
+    "source": "pipeline/run_lightgbm_unified.py",
+    "destination": "baselines/lightgbm/train.py",
+    "source_sha256": "fa9268fbdd4cc6b5aa0394aac6ef19e277409d8deae4d17543e24a25bca08fb1"
+  },
+  {
+    "source": "pipeline/build_memmap_store.py",
+    "destination": "embeddings/build_store.py",
+    "source_sha256": "1c4645c94ccee38add82c2537b6ed7bed89d43e215a9b8cd234079c3918712a4"
+  },
+  {
+    "source": "scripts/features/extract_esm2_embeddings.py",
+    "destination": "embeddings/extract_esm2.py",
+    "source_sha256": "c88c3d333bb7c4c315f3d82452d58213fc695e4cef2eeb45c2efbe593d39e23d"
+  },
+  {
+    "source": "scripts/features/extract_esm_if1_embeddings.py",
+    "destination": "embeddings/extract_esm_if1.py",
+    "source_sha256": "aeedeb7f5a17325055cd0c1950a7deaf76bda509113d37e61281dfef08d8ccfb"
+  },
+  {
+    "source": "scripts/data/download_alphafold_structures.py",
+    "destination": "data_download/alphafold.py",
+    "source_sha256": "a7756dd6458ea3bcd73eb04dc56a35cd1af1b4bb1d55cde2306b8c4fea57e225"
+  },
+  {
+    "source": "scripts/data/select_care_candidates.py",
+    "destination": "preprocessing/select_candidates.py",
+    "source_sha256": "9b2ea9b102a5c5a4c3e1432e99d6fa0aaf777190a54c4d3b661b10cbc03a152e"
+  },
+  {
+    "source": "scripts/data/validate_sequence_structure.py",
+    "destination": "preprocessing/align_sequences.py",
+    "source_sha256": "18f57410f118b508e044f8649bc8af3b796ff1fa1cbdbf60e6872894fd6684a2"
+  },
+  {
+    "source": "scripts/data/export_effective_splits.py",
+    "destination": "preprocessing/export_effective.py",
+    "source_sha256": "3bb73fd9cdaf996d75ee305ba37fa62ee3c20b2445bdd034b63e9b8429b25721"
+  },
+  {
+    "source": "scripts/data/materialize_structure_subset.py",
+    "destination": "baselines/foldseek/prepare_structures.py",
+    "source_sha256": "9db1698b7d73f7b716b8d7296147ad053cad0880a486ac88e39acc8e4e48c374"
+  },
+  {
+    "source": "scripts/baselines/make_fasta.py",
+    "destination": "baselines/blastp/make_fasta.py",
+    "source_sha256": "d1188e26ebcaec10c119b257275a77df102f2307a43838d2235c4504ccdea44e"
+  },
+  {
+    "source": "scripts/baselines/evaluate_retrieval.py",
+    "destination": "baselines/retrieval/evaluate.py",
+    "source_sha256": "8098de32f2ba9058dbbd23ad580b91c4dab327eff74bb5bf882a8d5b8bb761e3"
+  },
+  {
+    "source": "scripts/baselines/clean_adapter.py",
+    "destination": "baselines/clean/adapter.py",
+    "source_sha256": "3ed626c41dddb887590ca44600437ea3038622bcce97fb9960e1359735e74ab7"
+  },
+  {
+    "source": "scripts/analysis/export_gaca_inference_artifacts.py",
+    "destination": "gaca/evaluate.py",
+    "source_sha256": "83e1faf1f25d4c33c2f13ac596d248c475d9e6007b14cffb1160e865f4caf23f"
+  },
+  {
+    "source": "scripts/analysis/build_paper_tables.py",
+    "destination": "evaluation/paired_statistics.py",
+    "source_sha256": "55ac712af87f78a912833b7d62acf5645de06a4056fde51b505c1626cbe53bdd"
+  },
+  {
+    "source": "scripts/analysis/generate_updated_manuscript_figures.py",
+    "destination": "figures/plot.py",
+    "source_sha256": "a0eff0c7c00d0247797f09b91de6e6ceb629654e2ac64a9f33672a2a9a0e40a7"
+  },
+  {
+    "source": "metadata/fixed_fit_validation_split.csv",
+    "destination": "metadata/fixed_fit_validation_split.csv",
+    "source_sha256": "cae970b8ebfb1effbe0727de736f4008278d2e913e584998a790a2dc635f64b5"
+  },
+  {
+    "source": "metadata/label_mapping_reference.csv",
+    "destination": "metadata/label_mapping_reference.csv",
+    "source_sha256": "00f82cd846078a61e5ee944fa64f7cd3ec4c012277b73ce4bf357694cb1ae008"
+  },
+  {
+    "source": "results/final_metrics.csv",
+    "destination": "reference_results/final_metrics.csv",
+    "source_sha256": "f40d7668967030310e5230617fc46178952592f612ede28a925eee926a7fe03d"
+  },
+  {
+    "source": "legacy/data/align_30_50_original.py",
+    "destination": "legacy/data/align_30_50_original.py",
+    "source_sha256": "a9cc0e49f011d16f342d8f76c1012a6719183ef9bf6408ba7515f3c23ce1b3f2"
+  },
+  {
+    "source": "legacy/data/build_multimodal_dataset_original.py",
+    "destination": "legacy/data/build_multimodal_dataset_original.py",
+    "source_sha256": "75dfe473fd6b0b6f906e405039e01c22acd0380b45a79719361fa99f83ccc15c"
+  },
+  {
+    "source": "legacy/data/build_test_multimodal_dataset_original.py",
+    "destination": "legacy/data/build_test_multimodal_dataset_original.py",
+    "source_sha256": "05e9f35e79df1dd9c78ae4e23a245ae12db4538188ac85c42b1f6993314a69fa"
+  },
+  {
+    "source": "legacy/data/care_filter_and_download_original.py",
+    "destination": "legacy/data/care_filter_and_download_original.py",
+    "source_sha256": "71f4e1ee0fe4ce1d3f194086bae21bd867d3d404a9e26e2be892acac64e3d673"
+  },
+  {
+    "source": "legacy/data/delete_low_plddt_original.py",
+    "destination": "legacy/data/delete_low_plddt_original.py",
+    "source_sha256": "bfa45eb3df434d00b967bd39a93561eec65ed110b4cc45653ea7681b421a1b4b"
+  },
+  {
+    "source": "legacy/data/download_test_structures_original.py",
+    "destination": "legacy/data/download_test_structures_original.py",
+    "source_sha256": "e895e20232112929aa7c3407512713661f5ef2d5a983248f1bfb815df2870aa5"
+  },
+  {
+    "source": "legacy/data/download_train_structures_original.py",
+    "destination": "legacy/data/download_train_structures_original.py",
+    "source_sha256": "e2b1d78a2a020f65f7ae9773a8e37b6dd83f815209791447a87dfce1339df470"
+  },
+  {
+    "source": "legacy/features/extract_esm2_original.py",
+    "destination": "legacy/features/extract_esm2_original.py",
+    "source_sha256": "5a8da108372994ac73b0c9aac9cbb64e3a713d0c311edbb36f39bb54137a988e"
+  },
+  {
+    "source": "legacy/features/extract_esm_if1_earlier.py",
+    "destination": "legacy/features/extract_esm_if1_earlier.py",
+    "source_sha256": "1ce655691a4e5025eb726ddc47906254a70b6b690371c4a39d82225b669172e9"
+  },
+  {
+    "source": "legacy/features/extract_esm_if1_original.py",
+    "destination": "legacy/features/extract_esm_if1_original.py",
+    "source_sha256": "616ca9ad029c6b28d1c8dfe17b0daa56021093cd79deb449c9009befa5c6f139"
+  },
+  {
+    "source": "legacy/model/gaca_original.py",
+    "destination": "legacy/model/gaca_original.py",
+    "source_sha256": "60704eda49e1cacc1aed52be702600b002ed5ca33c0588a7d5c4c60b5cd15e88"
+  },
+  {
+    "source": "legacy/ablation/ablation_30_50_original.py",
+    "destination": "legacy/ablation/ablation_30_50_original.py",
+    "source_sha256": "2e55dbd0f405fdbd931d29a8f57f4a00fd894c93fd7989ec5544e2a512812e37"
+  },
+  {
+    "source": "legacy/ablation/ablation_core_component_original.py",
+    "destination": "legacy/ablation/ablation_core_component_original.py",
+    "source_sha256": "73b76470a61ec51f00f252b1b990d6f40cb0ffb5b0455414b1cda4a31e28d1d2"
+  },
+  {
+    "source": "legacy/ablation/ablation_lt30_original.py",
+    "destination": "legacy/ablation/ablation_lt30_original.py",
+    "source_sha256": "517f1f2aadd7330c76bf920eb1c615f2d0e5d776b4d6629b7ca6aa2eebb89968"
+  },
+  {
+    "source": "legacy/baselines/baseline_original.py",
+    "destination": "legacy/baselines/baseline_original.py",
+    "source_sha256": "41a817b7cd9461383353884dc470a30a64705eb2ca3cf5f619b129a12edaa526"
+  },
+  {
+    "source": "legacy/baselines/blastp_30_50_original.py",
+    "destination": "legacy/baselines/blastp_30_50_original.py",
+    "source_sha256": "b985d7a5be0a985e7f86d3ab68c32fdf6a8ae46db6de2b6b8a272111e10a50a7"
+  },
+  {
+    "source": "legacy/baselines/blastp_lt30_original.py",
+    "destination": "legacy/baselines/blastp_lt30_original.py",
+    "source_sha256": "d0e808b33995a5665236fe039f8968ddea9a5f6b50ca6808d4d74c22729bb95c"
+  },
+  {
+    "source": "legacy/baselines/blastp_results_gacma_original.py",
+    "destination": "legacy/baselines/blastp_results_gacma_original.py",
+    "source_sha256": "1c48282be4aa27284cfcd18cbef4f404ed679e4827e0e228745228c3a585bca8"
+  },
+  {
+    "source": "legacy/baselines/blastp_results_original.py",
+    "destination": "legacy/baselines/blastp_results_original.py",
+    "source_sha256": "717bbfc617f3f5e0e9d0ddec0a95b4162e64c221bf5761187f8981ec6aa53931"
+  },
+  {
+    "source": "legacy/baselines/evaluate_foldseek_original.py",
+    "destination": "legacy/baselines/evaluate_foldseek_original.py",
+    "source_sha256": "520bf3b4983387eb852ee891ec8d02067bbf7c0430f1e52afcb762c945640ee5"
+  },
+  {
+    "source": "legacy/baselines/random_baseline_original.py",
+    "destination": "legacy/baselines/random_baseline_original.py",
+    "source_sha256": "0f9813411e8dcea7bb72d518545dc65f3de5cea8399a9e5e270ab5c85c758675"
+  },
+  {
+    "source": "legacy/analysis/cm_gating_30_50_original.py",
+    "destination": "legacy/analysis/cm_gating_30_50_original.py",
+    "source_sha256": "74a09d081c1a66122f757eec21fccf6ee8a647d4951f04e99875b532cf3fb056"
+  },
+  {
+    "source": "legacy/analysis/cm_gating_lt30_original.py",
+    "destination": "legacy/analysis/cm_gating_lt30_original.py",
+    "source_sha256": "0926c568baf84c92c147cca2ca6934e6fc199d14c59befb4be7ed55f7acce386"
+  },
+  {
+    "source": "legacy/analysis/comparison_models_original.py",
+    "destination": "legacy/analysis/comparison_models_original.py",
+    "source_sha256": "53ee4c622c20b3e6219de8365e420ce93a8d98a3fe2c825b8e28e931fe9bfe84"
+  },
+  {
+    "source": "legacy/analysis/comprehensive_analysis_original.py",
+    "destination": "legacy/analysis/comprehensive_analysis_original.py",
+    "source_sha256": "c5f737be07181c30d56d674d41e498f7844fc18323d4864f5131bfe8a52ccbca"
+  },
+  {
+    "source": "legacy/analysis/heatmap_30_50_original.py",
+    "destination": "legacy/analysis/heatmap_30_50_original.py",
+    "source_sha256": "4ba1e798fbfd7afcc0a6cdb3e05a8ce1af2762ec2c4b25c957a1610f13067609"
+  },
+  {
+    "source": "legacy/analysis/heatmap_lt30_original.py",
+    "destination": "legacy/analysis/heatmap_lt30_original.py",
+    "source_sha256": "c227e6a763c286bcaedf1df316be5a29e6db081ce8e7193e06d717aaa1c10060"
+  },
+  {
+    "source": "legacy/analysis/representation_analysis_original.py",
+    "destination": "legacy/analysis/representation_analysis_original.py",
+    "source_sha256": "8487bf261cd45ac4045e117a297fcff25d9bec8e8d17a4beaa8b60ab92ae527c"
+  },
+  {
+    "source": "legacy/clean/evaluate_clean_original.py",
+    "destination": "legacy/clean/evaluate_clean_original.py",
+    "source_sha256": "24982c6fa1cb2979b2185182452adf758adc510b917b2912d467d372b7905803"
+  },
+  {
+    "source": "legacy/clean/run_clean_infer_original.py",
+    "destination": "legacy/clean/run_clean_infer_original.py",
+    "source_sha256": "6166beaa4cb4e8cd873dcae7ef72bbdd950bd83feac7149263b0d89a4b0d4176"
+  },
+  {
+    "source": "results/neural/attention_concat/full_refit_history.csv",
+    "destination": "reference_results/neural/attention_concat/full_refit_history.csv",
+    "source_sha256": "b0ff244c7e3b7ff047557d9155f0796483053933feac1695c0ca81f571577c5b"
+  },
+  {
+    "source": "results/neural/attention_concat/metrics.json",
+    "destination": "reference_results/neural/attention_concat/metrics.json",
+    "source_sha256": "76e498d22cb43d5b19cfc2bf538ace1a1423a165712663692273519689bab1ff"
+  },
+  {
+    "source": "results/neural/attention_concat/predictions_30_50.csv",
+    "destination": "reference_results/neural/attention_concat/predictions_30_50.csv",
+    "source_sha256": "5e0e0839a158733b00d5db26ea69d3f189dcdc37773e154adbd78727324a4c14"
+  },
+  {
+    "source": "results/neural/attention_concat/predictions_lt30.csv",
+    "destination": "reference_results/neural/attention_concat/predictions_lt30.csv",
+    "source_sha256": "f74d5f9ebcc5f53d029bbafdd7135f2401f994ec01f3252ef45c51c3faeaf3f6"
+  },
+  {
+    "source": "results/neural/attention_concat/tuning_history.csv",
+    "destination": "reference_results/neural/attention_concat/tuning_history.csv",
+    "source_sha256": "3fe9afc3015cfa12805ea8ed4f2acb9a952d88980cfabd9aeb60604521aa3d9e"
+  },
+  {
+    "source": "results/neural/cross_attention/full_refit_history.csv",
+    "destination": "reference_results/neural/cross_attention/full_refit_history.csv",
+    "source_sha256": "5b6791ef4288c6c3bad94ede2603e9e96f1e296f0618decdfb9dd61e946a4b9e"
+  },
+  {
+    "source": "results/neural/cross_attention/metrics.json",
+    "destination": "reference_results/neural/cross_attention/metrics.json",
+    "source_sha256": "fdef713ae1034ad466ddb58d7d171a619c6081d4c267e7b0b7d2f0769612df29"
+  },
+  {
+    "source": "results/neural/cross_attention/predictions_30_50.csv",
+    "destination": "reference_results/neural/cross_attention/predictions_30_50.csv",
+    "source_sha256": "b35fdaed0d47fe6a1cf445a3e51c823a59ace8901a4a457bb3fcd2ad28565cbb"
+  },
+  {
+    "source": "results/neural/cross_attention/predictions_lt30.csv",
+    "destination": "reference_results/neural/cross_attention/predictions_lt30.csv",
+    "source_sha256": "98113215a8f870dd7c3859588707c3fc1e260d6818aa4af83dd397bd34bb3525"
+  },
+  {
+    "source": "results/neural/cross_attention/tuning_history.csv",
+    "destination": "reference_results/neural/cross_attention/tuning_history.csv",
+    "source_sha256": "483073dae2b4743763e16b022cb2a77a4af8cbb4a54c56f3dde77da2b2260c58"
+  },
+  {
+    "source": "results/neural/gaca/full_refit_history.csv",
+    "destination": "reference_results/neural/gaca/full_refit_history.csv",
+    "source_sha256": "11bc290ea52697abf220961723e076c30b8343247a36b4c1028e2fd890ce579c"
+  },
+  {
+    "source": "results/neural/gaca/inference_artifacts_summary.json",
+    "destination": "reference_results/neural/gaca/inference_artifacts_summary.json",
+    "source_sha256": "e11da6ea268480be48575378f1cc4900bc21defa533c74932cc9a2b54e25634c"
+  },
+  {
+    "source": "results/neural/gaca/inference_predictions_30_50.csv",
+    "destination": "reference_results/neural/gaca/inference_predictions_30_50.csv",
+    "source_sha256": "1cb07924d60855b5d2e90d4b76b2dae200c53afd9c5900c2ab2137e3bac30078"
+  },
+  {
+    "source": "results/neural/gaca/inference_predictions_lt30.csv",
+    "destination": "reference_results/neural/gaca/inference_predictions_lt30.csv",
+    "source_sha256": "31e796133958b0204b5aa9896c1dc98a04d3dfca754d1ee2a5fc0ed98332f52f"
+  },
+  {
+    "source": "results/neural/gaca/metrics.json",
+    "destination": "reference_results/neural/gaca/metrics.json",
+    "source_sha256": "6ac91ff59c0db105a9619552c3edd46a1721d6d52d5fbb98d4013f895ff2e224"
+  },
+  {
+    "source": "results/neural/gaca/predictions_30_50.csv",
+    "destination": "reference_results/neural/gaca/predictions_30_50.csv",
+    "source_sha256": "39774caf4a72d90e55db12a12c62b696a23e5e60ca5662df8d8aaf5e869af57c"
+  },
+  {
+    "source": "results/neural/gaca/predictions_lt30.csv",
+    "destination": "reference_results/neural/gaca/predictions_lt30.csv",
+    "source_sha256": "f8dd249759d286947fe67771de0aa14502dda56bb5b49e6352df89a38096d29f"
+  },
+  {
+    "source": "results/neural/gaca/tuning_history.csv",
+    "destination": "reference_results/neural/gaca/tuning_history.csv",
+    "source_sha256": "03c432635b19d2ef506356b4bcac2525f57a67a94cbfdede830f71e36ddde351"
+  },
+  {
+    "source": "results/neural/mean_concat/full_refit_history.csv",
+    "destination": "reference_results/neural/mean_concat/full_refit_history.csv",
+    "source_sha256": "8cd9a40f9b549279983b6375200de2507c83d3acd665795c9d8022fa332c1efb"
+  },
+  {
+    "source": "results/neural/mean_concat/metrics.json",
+    "destination": "reference_results/neural/mean_concat/metrics.json",
+    "source_sha256": "ca24535f3f4a3edbb9f5046e0e983ce54ec01c43764c1575a3af4d1516adf021"
+  },
+  {
+    "source": "results/neural/mean_concat/predictions_30_50.csv",
+    "destination": "reference_results/neural/mean_concat/predictions_30_50.csv",
+    "source_sha256": "15b5d65e5aff702ff5387be2a32bd3c5dcf5e63d0d1e1cefbe332a3b48f31bd3"
+  },
+  {
+    "source": "results/neural/mean_concat/predictions_lt30.csv",
+    "destination": "reference_results/neural/mean_concat/predictions_lt30.csv",
+    "source_sha256": "9a4f498e19604e4e015df9233abc0a74cea0828b62e391777518d2c13753ff20"
+  },
+  {
+    "source": "results/neural/mean_concat/tuning_history.csv",
+    "destination": "reference_results/neural/mean_concat/tuning_history.csv",
+    "source_sha256": "12d67b0d4bd2ea993cf7388a86502711f6ec64d7cab5a5c11cdfede2d33c7025"
+  },
+  {
+    "source": "results/neural/mean_vector_gate/full_refit_history.csv",
+    "destination": "reference_results/neural/mean_vector_gate/full_refit_history.csv",
+    "source_sha256": "6c4680d73ce06c0129905b0b808c924b042ceebe0b85050bffaaafa5be202c5c"
+  },
+  {
+    "source": "results/neural/mean_vector_gate/metrics.json",
+    "destination": "reference_results/neural/mean_vector_gate/metrics.json",
+    "source_sha256": "07c07d96be311650e644f94dfbf43c1ae50ae4938a2b8f730218fe8fd4777f32"
+  },
+  {
+    "source": "results/neural/mean_vector_gate/predictions_30_50.csv",
+    "destination": "reference_results/neural/mean_vector_gate/predictions_30_50.csv",
+    "source_sha256": "ff637ca53f0b4e32a7a6259602f5fe93847e7555aa1e74003b0666bf20ad32f7"
+  },
+  {
+    "source": "results/neural/mean_vector_gate/predictions_lt30.csv",
+    "destination": "reference_results/neural/mean_vector_gate/predictions_lt30.csv",
+    "source_sha256": "7bbc217a826d140cdceea9c1a02d92fb50d6e0a2c80dc73ac27e1bb8d1791704"
+  },
+  {
+    "source": "results/neural/mean_vector_gate/tuning_history.csv",
+    "destination": "reference_results/neural/mean_vector_gate/tuning_history.csv",
+    "source_sha256": "9803e307df4f8ea400940685cc1600f6a7cc2daba41e78dab2d6dce15a546692"
+  },
+  {
+    "source": "results/neural/seq_only/full_refit_history.csv",
+    "destination": "reference_results/neural/seq_only/full_refit_history.csv",
+    "source_sha256": "fae3211ecea80d89fa732f2457150b5744816b1ff0ef6c4d80565978de0f4daa"
+  },
+  {
+    "source": "results/neural/seq_only/metrics.json",
+    "destination": "reference_results/neural/seq_only/metrics.json",
+    "source_sha256": "55543edd088fb0238d4f06c54c1b2f47beee474b29e20f1ffe9c99eb77aeb30d"
+  },
+  {
+    "source": "results/neural/seq_only/predictions_30_50.csv",
+    "destination": "reference_results/neural/seq_only/predictions_30_50.csv",
+    "source_sha256": "b8e2844aa502b9bcdb851617a22461274adea8d138cfd4c57c6a517861cecdbc"
+  },
+  {
+    "source": "results/neural/seq_only/predictions_lt30.csv",
+    "destination": "reference_results/neural/seq_only/predictions_lt30.csv",
+    "source_sha256": "e8ada4664a6363cc107c1aa8a96edbf26accdd7f8f82750d161613b3a65bb9e4"
+  },
+  {
+    "source": "results/neural/seq_only/tuning_history.csv",
+    "destination": "reference_results/neural/seq_only/tuning_history.csv",
+    "source_sha256": "747699317b42fee959a9268ecac0a202a3962b2ece4e68b924ed1f5a67ae2aa3"
+  },
+  {
+    "source": "results/neural/str_only/full_refit_history.csv",
+    "destination": "reference_results/neural/str_only/full_refit_history.csv",
+    "source_sha256": "c3c96b942bca02ff06ba1aed785781f05e71aa7b21a7cde1de764555722ec74d"
+  },
+  {
+    "source": "results/neural/str_only/metrics.json",
+    "destination": "reference_results/neural/str_only/metrics.json",
+    "source_sha256": "f5c580b1331f63c93edf2e85a33bd2dcdebb1e10cbf179b5f0b9eae0cedd401b"
+  },
+  {
+    "source": "results/neural/str_only/predictions_30_50.csv",
+    "destination": "reference_results/neural/str_only/predictions_30_50.csv",
+    "source_sha256": "8b31e1a8b095edc9c0b476074babff28bb9fa0d5f46a8463ac42901fc74ed97f"
+  },
+  {
+    "source": "results/neural/str_only/predictions_lt30.csv",
+    "destination": "reference_results/neural/str_only/predictions_lt30.csv",
+    "source_sha256": "1ed34ce0c0ddcad80a2c5358c220412e15b2f9a9f51d8e8eb98c6e0ea9153c79"
+  },
+  {
+    "source": "results/neural/str_only/tuning_history.csv",
+    "destination": "reference_results/neural/str_only/tuning_history.csv",
+    "source_sha256": "62aed7d63eae17e475ecf909f803c1fe2efd8c709fb7ecdc0218e14ee7800090"
+  },
+  {
+    "source": "results/baselines/knn/metrics.json",
+    "destination": "reference_results/baselines/knn/metrics.json",
+    "source_sha256": "711a1d14678a1ee24511f6034847e539b59943453d9a9f786d335f71a1ee83f4"
+  },
+  {
+    "source": "results/baselines/knn/predictions_30_50.csv",
+    "destination": "reference_results/baselines/knn/predictions_30_50.csv",
+    "source_sha256": "d6e3237e4d46e710e1821b28b4fd9f36d1f1c4f70d44e47304bcfc4ba950a5ef"
+  },
+  {
+    "source": "results/baselines/knn/predictions_lt30.csv",
+    "destination": "reference_results/baselines/knn/predictions_lt30.csv",
+    "source_sha256": "db28c427133b61553bf47e6b3f4a2b9d8b94a21638ce7911dbe2d74f1902de9c"
+  },
+  {
+    "source": "results/baselines/lightgbm/label_mapping.csv",
+    "destination": "reference_results/baselines/lightgbm/label_mapping.csv",
+    "source_sha256": "d4609f9ffe7fa59725b93d64aa96664068a4ee45b19f6b44f85f327f928a8606"
+  },
+  {
+    "source": "results/baselines/lightgbm/metrics.json",
+    "destination": "reference_results/baselines/lightgbm/metrics.json",
+    "source_sha256": "fd662f06012bea8f004bf85263913aa6b19c6c811bc984dfd1e2950de49cf158"
+  },
+  {
+    "source": "results/baselines/lightgbm/predictions_30_50.csv",
+    "destination": "reference_results/baselines/lightgbm/predictions_30_50.csv",
+    "source_sha256": "d6f2c2e0fdea26e81f70ea6cc88f48369629460b95364ffa78d6dbf1b2485eb5"
+  },
+  {
+    "source": "results/baselines/lightgbm/predictions_lt30.csv",
+    "destination": "reference_results/baselines/lightgbm/predictions_lt30.csv",
+    "source_sha256": "8dd3cdd8272642d7d6efc87e3bf34664d8a056a0aba50a9c4bb06f129b8fa79a"
+  },
+  {
+    "source": "results/baselines/random_forest/metrics.json",
+    "destination": "reference_results/baselines/random_forest/metrics.json",
+    "source_sha256": "db870243aeedb5d09eaf80f0542d363ed92fce4bb241a6036b28b0477c2c6ccb"
+  },
+  {
+    "source": "results/baselines/random_forest/predictions_30_50.csv",
+    "destination": "reference_results/baselines/random_forest/predictions_30_50.csv",
+    "source_sha256": "e80dc79ca9bc533917d96ba80adead55e4be573067629528a67fa276467e5d73"
+  },
+  {
+    "source": "results/baselines/random_forest/predictions_lt30.csv",
+    "destination": "reference_results/baselines/random_forest/predictions_lt30.csv",
+    "source_sha256": "6b951f10988b6b232bfcf50b0d70ae3ad263fa44742d0746576c51295953c4de"
+  },
+  {
+    "source": "results/baselines/svm/metrics.json",
+    "destination": "reference_results/baselines/svm/metrics.json",
+    "source_sha256": "dd9d5e407be44d3722c132026bf9b29bc020a9fe195822cb2ed17c112c4ab812"
+  },
+  {
+    "source": "results/baselines/svm/predictions_30_50.csv",
+    "destination": "reference_results/baselines/svm/predictions_30_50.csv",
+    "source_sha256": "de4e0cd5c20b6176adf3ec8fb4a6af170e4a3df0d0dfea350b02b9a52723779c"
+  },
+  {
+    "source": "results/baselines/svm/predictions_lt30.csv",
+    "destination": "reference_results/baselines/svm/predictions_lt30.csv",
+    "source_sha256": "7bfd39828e46fd283eea6d717d30ac9a5694bf5c95a28437836b5bfcbd193133"
+  },
+  {
+    "source": "results/retrieval/blastp/predictions_30_50.csv",
+    "destination": "reference_results/retrieval/blastp/predictions_30_50.csv",
+    "source_sha256": "88ac000bd6eb380eb95c783c0ec65f3a9ca49b928b8f8883c01db25d88d93646"
+  },
+  {
+    "source": "results/retrieval/blastp/predictions_lt30.csv",
+    "destination": "reference_results/retrieval/blastp/predictions_lt30.csv",
+    "source_sha256": "473b6aa6cf7debb0ffd5d9d55bc83f0f09f1e0e0a98e03d37dc05bc92ba791fe"
+  },
+  {
+    "source": "results/retrieval/foldseek/predictions_30_50.csv",
+    "destination": "reference_results/retrieval/foldseek/predictions_30_50.csv",
+    "source_sha256": "4184f4b105d42fdad27cae7ad33e281dc1273bf46cdc43309dde81d1f38f02cc"
+  },
+  {
+    "source": "results/retrieval/foldseek/predictions_lt30.csv",
+    "destination": "reference_results/retrieval/foldseek/predictions_lt30.csv",
+    "source_sha256": "81e3af61673cf04640e14c3b4fae79a54c166b42955e7f17bd266149e58a0b9e"
+  },
+  {
+    "source": "results/retrieval/strict_metrics.csv",
+    "destination": "reference_results/retrieval/strict_metrics.csv",
+    "source_sha256": "be059fbdc97e13b2113a8d4b64290a8e5aa8b3464ca3754ef524aff3c28f5199"
+  },
+  {
+    "source": "results/retrieval/strict_predictions_with_foldseek_30-50.csv",
+    "destination": "reference_results/retrieval/strict_predictions_with_foldseek_30-50.csv",
+    "source_sha256": "ddf778aa6bdc670311ac3bf8ca8e40670266828d1a070b9ef81d13fdcf397fc3"
+  },
+  {
+    "source": "results/retrieval/strict_predictions_with_foldseek_lt30.csv",
+    "destination": "reference_results/retrieval/strict_predictions_with_foldseek_lt30.csv",
+    "source_sha256": "5b152bb84f6bf21137c895a0d08efe62e7f406c2a6bc50019ec858f260a6089c"
+  },
+  {
+    "source": "results/paper_tables/updated_derived_results.json",
+    "destination": "reference_results/paper_tables/updated_derived_results.json",
+    "source_sha256": "62b5e161bc191223321c6f3bc9db9d46fc9c44bf89a83d7e3301442b31fd8f63"
+  },
+  {
+    "source": "results/paper_tables/updated_gaca_vs_blastp.csv",
+    "destination": "reference_results/paper_tables/updated_gaca_vs_blastp.csv",
+    "source_sha256": "110a5b487a095f3ea0a38afbb03209490b03f0058e5b78c19605b8897617b3db"
+  },
+  {
+    "source": "results/paper_tables/updated_gaca_vs_foldseek.csv",
+    "destination": "reference_results/paper_tables/updated_gaca_vs_foldseek.csv",
+    "source_sha256": "d2d86b8179d017ab2b416aa402fe047727435b75a72352cfb0d61c34f222e3b5"
+  },
+  {
+    "source": "results/paper_tables/updated_long_tail.csv",
+    "destination": "reference_results/paper_tables/updated_long_tail.csv",
+    "source_sha256": "1b8d2fa72899de8aa8729ac5496810683481436885875196d8e73bc8b1ba4d79"
+  },
+  {
+    "source": "results/paper_tables/updated_table8_cases.csv",
+    "destination": "reference_results/paper_tables/updated_table8_cases.csv",
+    "source_sha256": "517d12f34553645816bfd63d6e066c8475556f79b4acc89c551db229820a52d0"
+  }
+]

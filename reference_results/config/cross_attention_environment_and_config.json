@@ -1,0 +1,33 @@
+{
+  "python": "3.9.23 (main, Jun  5 2025, 13:40:20) \n[GCC 11.2.0]",
+  "platform": "Linux-5.15.0-107-generic-x86_64-with-glibc2.31",
+  "torch": "2.2.2",
+  "numpy": "1.26.4",
+  "pandas": "2.3.2",
+  "sklearn": "1.6.1",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "arguments": {
+    "output_dir": "/home/lihaotian/new_ec/journal_rerun_20260727_server/cross_attention_512_formal",
+    "feature_root": "/home/lihaotian/new_ec/journal_rerun_20260727_server/feature_store",
+    "models": [
+      "cross_attention"
+    ],
+    "batch_size": 128,
+    "cross_attention_batch_size": 8,
+    "cross_attention_dim": 512,
+    "cross_attention_heads": 4,
+    "hidden_dim": 512,
+    "dropout": 0.5,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.005,
+    "label_smoothing": 0.1,
+    "validation_ratio": 0.1,
+    "max_epochs": 120,
+    "patience": 30,
+    "refit_only_epochs": null,
+    "seed": 42,
+    "workers": 4,
+    "amp": true
+  }
+}

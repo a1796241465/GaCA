@@ -1,0 +1,157 @@
+{
+  "candidate_reconstruction": {
+    "candidates": 17587,
+    "source": 13727,
+    "source_ids_missing": []
+  },
+  "care_source_train": {
+    "raw_count": 28316,
+    "source_ids_present": true,
+    "labels_equal": false,
+    "sequence_hashes_equal": false
+  },
+  "care_source_lt30": {
+    "raw_count": 432,
+    "source_ids_present": true,
+    "labels_equal": true,
+    "sequence_hashes_equal": true
+  },
+  "care_source_30_50": {
+    "raw_count": 560,
+    "source_ids_present": true,
+    "labels_equal": true,
+    "sequence_hashes_equal": true
+  },
+  "structure_sample_train": {
+    "available": 13727,
+    "missing_manifest_ids": 0,
+    "sampled": 30,
+    "old_vs_new_coordinate_mismatches": [],
+    "original_length_mismatches": [],
+    "aligned_sequence_mismatches": [],
+    "errors": []
+  },
+  "structure_sample_lt30": {
+    "available": 314,
+    "missing_manifest_ids": 0,
+    "sampled": 30,
+    "old_vs_new_coordinate_mismatches": [],
+    "original_length_mismatches": [],
+    "aligned_sequence_mismatches": [],
+    "errors": []
+  },
+  "structure_sample_30_50": {
+    "available": 549,
+    "missing_manifest_ids": 0,
+    "sampled": 30,
+    "old_vs_new_coordinate_mismatches": [],
+    "original_length_mismatches": [],
+    "aligned_sequence_mismatches": [],
+    "errors": []
+  },
+  "original_release_model_forward": {
+    "eval_max_abs": 0.0,
+    "train_max_abs": 0.0
+  },
+  "independent_metrics_vs_final": {
+    "rows": 26,
+    "max_abs_difference": 1.1102230246251565e-16
+  },
+  "independent_paired_blastp": [
+    {
+      "dataset": "lt30",
+      "metric": "level4_accuracy",
+      "difference": 0.06584362139917699,
+      "ci95_low": 0.024691358024691357,
+      "ci95_high": 0.11111111111111105,
+      "paired_p": 0.005222879350185394,
+      "gaca_only": 23,
+      "baseline_only": 7,
+      "max_abs_difference": 9.454242944073599e-17
+    },
+    {
+      "dataset": "lt30",
+      "metric": "macro_f1",
+      "difference": 0.06360373295046662,
+      "ci95_low": 0.02713549058260227,
+      "ci95_high": 0.09999999999999998,
+      "paired_p": 0.0016,
+      "gaca_only": 23,
+      "baseline_only": 7,
+      "max_abs_difference": 8.326672684688674e-17
+    },
+    {
+      "dataset": "30_50",
+      "metric": "level4_accuracy",
+      "difference": 0.037735849056603765,
+      "ci95_low": 0.012578616352201255,
+      "ci95_high": 0.06289308176100628,
+      "paired_p": 0.0050976432976312935,
+      "gaca_only": 28,
+      "baseline_only": 10,
+      "max_abs_difference": 9.367506770274758e-17
+    },
+    {
+      "dataset": "30_50",
+      "metric": "macro_f1",
+      "difference": 0.024180211006558316,
+      "ci95_low": 0.007830991235266893,
+      "ci95_high": 0.04982928525157641,
+      "paired_p": 0.0076,
+      "gaca_only": 28,
+      "baseline_only": 10,
+      "max_abs_difference": 9.367506770274758e-17
+    }
+  ],
+  "independent_paired_foldseek": [
+    {
+      "dataset": "lt30",
+      "metric": "level4_accuracy",
+      "difference": 0.03292181069958844,
+      "ci95_low": -0.008230452674897085,
+      "ci95_high": 0.07407407407407407,
+      "paired_p": 0.1849333420395851,
+      "gaca_only": 18,
+      "baseline_only": 10,
+      "max_abs_difference": 8.500145032286355e-17
+    },
+    {
+      "dataset": "lt30",
+      "metric": "macro_f1",
+      "difference": 0.03831060062215841,
+      "ci95_low": -0.0010998774509804962,
+      "ci95_high": 0.07046480134837181,
+      "paired_p": 0.0592,
+      "gaca_only": 18,
+      "baseline_only": 10,
+      "max_abs_difference": 9.627715291671279e-17
+    },
+    {
+      "dataset": "30_50",
+      "metric": "level4_accuracy",
+      "difference": 0.03563941299790363,
+      "ci95_low": 0.010482180293501009,
+      "ci95_high": 0.06079664570230614,
+      "paired_p": 0.009475304279476404,
+      "gaca_only": 28,
+      "baseline_only": 11,
+      "max_abs_difference": 4.163336342344337e-17
+    },
+    {
+      "dataset": "30_50",
+      "metric": "macro_f1",
+      "difference": 0.023049139815606856,
+      "ci95_low": 0.006810971100898508,
+      "ci95_high": 0.050304034530363424,
+      "paired_p": 0.0132,
+      "gaca_only": 28,
+      "baseline_only": 11,
+      "max_abs_difference": 5.551115123125783e-17
+    }
+  ],
+  "local_runtime": {
+    "torch": "2.4.0",
+    "cuda_available": true,
+    "cuda": "12.4"
+  }
+}

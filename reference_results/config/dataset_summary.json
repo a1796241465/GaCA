@@ -1,0 +1,11 @@
+{
+  "effective_training_samples": 13671,
+  "fitting_samples": 12303,
+  "validation_samples": 1368,
+  "training_classes": 3811,
+  "fitting_classes": 3811,
+  "test_samples": {
+    "lt30": 243,
+    "30_50": 477
+  }
+}

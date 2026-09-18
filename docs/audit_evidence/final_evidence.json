@@ -1,0 +1,172 @@
+{
+  "source": {
+    "raw_rows": 28316,
+    "raw_duplicate_rows": 134,
+    "raw_conflicting_label_ids": 131,
+    "retained_order_labels_equal": true,
+    "retained_sequences_equal": true,
+    "fit_validation_identical_sequences": 0
+  },
+  "inference": {
+    "lt30": {
+      "count": 243,
+      "correct": 178,
+      "original_predictions_exact": true
+    },
+    "30_50": {
+      "count": 477,
+      "correct": 405,
+      "original_predictions_exact": true
+    }
+  },
+  "readme_cli": {
+    "ablations.train": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "baselines.blastp.make_fasta": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "baselines.classical.train": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "baselines.foldseek.prepare_structures": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "baselines.lightgbm.train": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "baselines.retrieval.evaluate": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "data_download.alphafold": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "data_download.download_care": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "embeddings.build_store": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "embeddings.extract_esm2": "NOT RUN: local fair-esm unavailable",
+    "embeddings.extract_esm_if1": "NOT RUN: local fair-esm unavailable",
+    "evaluation.collect_metrics": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "evaluation.paired_statistics": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "figures.plot": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "gaca.train": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "preprocessing.align_sequences": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "preprocessing.export_effective": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "preprocessing.prepare_splits": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "preprocessing.select_candidates": {
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  "syntax_passed": [
+    "ablations\\models.py",
+    "ablations\\train.py",
+    "ablations\\__init__.py",
+    "baselines\\__init__.py",
+    "common\\protocol.py",
+    "common\\__init__.py",
+    "data_download\\alphafold.py",
+    "data_download\\download_care.py",
+    "data_download\\__init__.py",
+    "embeddings\\build_store.py",
+    "embeddings\\extract_esm2.py",
+    "embeddings\\extract_esm_if1.py",
+    "embeddings\\__init__.py",
+    "evaluation\\collect_metrics.py",
+    "evaluation\\paired_statistics.py",
+    "evaluation\\__init__.py",
+    "figures\\plot.py",
+    "figures\\__init__.py",
+    "gaca\\evaluate.py",
+    "gaca\\model.py",
+    "gaca\\train.py",
+    "gaca\\__init__.py",
+    "preprocessing\\align_sequences.py",
+    "preprocessing\\export_effective.py",
+    "preprocessing\\prepare_splits.py",
+    "preprocessing\\select_candidates.py",
+    "preprocessing\\__init__.py",
+    "tests\\test_release_guards.py",
+    "baselines\\blastp\\make_fasta.py",
+    "baselines\\blastp\\__init__.py",
+    "baselines\\classical\\train.py",
+    "baselines\\classical\\__init__.py",
+    "baselines\\clean\\adapter.py",
+    "baselines\\clean\\__init__.py",
+    "baselines\\foldseek\\prepare_structures.py",
+    "baselines\\foldseek\\__init__.py",
+    "baselines\\lightgbm\\train.py",
+    "baselines\\lightgbm\\__init__.py",
+    "baselines\\retrieval\\evaluate.py",
+    "baselines\\retrieval\\__init__.py"
+  ],
+  "changed_existing_files": [
+    "baselines\\classical\\train.py",
+    "common\\protocol.py",
+    "docs\\PIPELINE_AUDIT.md",
+    "embeddings\\build_store.py",
+    "environment.yml",
+    "evaluation\\paired_statistics.py",
+    "gaca\\evaluate.py",
+    "gaca\\train.py",
+    "preprocessing\\export_effective.py",
+    "README.md",
+    "requirements.txt"
+  ],
+  "new_test_file": "tests/test_release_guards.py",
+  "regression_tests_passed": 8,
+  "resolutions": {
+    "numeric_label_regex": "Over-strict audit probe, not a model failure. Original labels include n-prefixed fourth fields: 21 training proteins and one 30_50 test protein. Preserve source labels.",
+    "model_ast_difference": "Only forward_with_gate wrapper; original and release logits match exactly in train/eval synthetic tests.",
+    "evaluate_ast_difference": "Adds probability/gate exports; full checkpoint inference matches all 720 original predictions.",
+    "raw_train_comparison": "Initial direct indexed comparison expanded duplicate CARE IDs. Actual sampled/deduplicated rows match all archived source IDs, labels, sequences and order."
+  },
+  "unresolved_probes": {
+    "alignment_bounds_ACDEFG_AEDCFG": [
+      0,
+      6,
+      0,
+      6,
+      1.0
+    ],
+    "lightgbm_subsample": 0.8,
+    "lightgbm_subsample_freq": 0,
+    "fresh_environment_installation": "not run",
+    "fresh_embedding_extraction": "not run",
+    "full_training": "not run",
+    "external_searches": "not run"
+  }
+}

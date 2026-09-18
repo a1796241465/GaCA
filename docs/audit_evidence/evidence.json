@@ -1,0 +1,1209 @@
+{
+  "checks": [
+    {
+      "name": "fixed_split_exact_original",
+      "passed": true,
+      "detail": {
+        "fit": 12303,
+        "validation": 1368
+      }
+    },
+    {
+      "name": "mapping_exact_original",
+      "passed": true,
+      "detail": [
+        "class_index",
+        "ec_label"
+      ]
+    },
+    {
+      "name": "labels_count",
+      "passed": true,
+      "detail": 3811
+    },
+    {
+      "name": "split_label_alignment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fit_label_coverage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "train_source_order_labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "train_source_sequence_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "seq_train_store",
+      "passed": true,
+      "detail": {
+        "proteins": 13671,
+        "shape": [
+          4788944,
+          1280
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "seq_train_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_train_store",
+      "passed": true,
+      "detail": {
+        "proteins": 13727,
+        "shape": [
+          4808447,
+          512
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "str_train_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_train_manifest_lengths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "train_effective_exact_order_labels",
+      "passed": true,
+      "detail": 13671
+    },
+    {
+      "name": "train_unique_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "train_valid_four_field_labels",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "lt30_source_order_labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "lt30_source_sequence_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "seq_lt30_store",
+      "passed": true,
+      "detail": {
+        "proteins": 312,
+        "shape": [
+          119017,
+          1280
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "seq_lt30_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_lt30_store",
+      "passed": true,
+      "detail": {
+        "proteins": 314,
+        "shape": [
+          120375,
+          512
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "str_lt30_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_lt30_manifest_lengths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "lt30_effective_exact_order_labels",
+      "passed": true,
+      "detail": 243
+    },
+    {
+      "name": "lt30_unique_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "lt30_valid_four_field_labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "30_50_source_order_labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "30_50_source_sequence_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "seq_30_50_store",
+      "passed": true,
+      "detail": {
+        "proteins": 549,
+        "shape": [
+          229375,
+          1280
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "seq_30_50_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_30_50_store",
+      "passed": true,
+      "detail": {
+        "proteins": 549,
+        "shape": [
+          229375,
+          512
+        ],
+        "dtype": "float16",
+        "finite_check": "1000 sampled rows"
+      }
+    },
+    {
+      "name": "str_30_50_manifest_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "str_30_50_manifest_lengths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "30_50_effective_exact_order_labels",
+      "passed": true,
+      "detail": 477
+    },
+    {
+      "name": "30_50_unique_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "30_50_valid_four_field_labels",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "train_lt30_id_disjoint",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "train_lt30_sequence_disjoint",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "train_30_50_id_disjoint",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "train_30_50_sequence_disjoint",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "lt30_30_50_id_disjoint",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "lt30_30_50_sequence_disjoint",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "checkpoint_tensor_exact_original",
+      "passed": true,
+      "detail": {
+        "tensors": 29,
+        "sha256": "cdcd4da798a95322f712c6901ecf862a23e80180736d7f9fe7ac3251928f66ef"
+      }
+    },
+    {
+      "name": "parameter_count",
+      "passed": true,
+      "detail": {
+        "seq_pool": 164097,
+        "str_pool": 65793,
+        "seq_proj": 656896,
+        "str_proj": 263680,
+        "gate": 787456,
+        "classifier": 2218723
+      }
+    },
+    {
+      "name": "model_ast_AttentionPooling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "model_ast_masked_mean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "model_ast_ClassificationHead",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "model_ast_GaCA",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "training_ast_seed_everything",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "training_ast_collate_batch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "training_ast_make_label_protected_split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "training_ast_train_epoch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "training_ast_validation_metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "training_ast_evaluate_test",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "training_ast_make_loader",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "padding_invariance",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "name": "all_parameters_receive_gradient",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "predictions_baselines\\knn\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\knn\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\lightgbm\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\lightgbm\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\random_forest\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\random_forest\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\svm\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_baselines\\svm\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\attention_concat\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\attention_concat\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\cross_attention\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\cross_attention\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\gaca\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "30_50_probability_label_id_alignment",
+      "passed": true,
+      "detail": [
+        477,
+        3811
+      ]
+    },
+    {
+      "name": "30_50_probabilities_valid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "30_50_gates_valid",
+      "passed": true,
+      "detail": [
+        477,
+        512
+      ]
+    },
+    {
+      "name": "30_50_original_predictions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "predictions_neural\\gaca\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "lt30_probability_label_id_alignment",
+      "passed": true,
+      "detail": [
+        243,
+        3811
+      ]
+    },
+    {
+      "name": "lt30_probabilities_valid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "lt30_gates_valid",
+      "passed": true,
+      "detail": [
+        243,
+        512
+      ]
+    },
+    {
+      "name": "lt30_original_predictions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "predictions_neural\\mean_concat\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\mean_concat\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\mean_vector_gate\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\mean_vector_gate\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\seq_only\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\seq_only\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\str_only\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_neural\\str_only\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "predicted_ec",
+          "top_class_softmax_score",
+          "level_1_correct",
+          "level_2_correct",
+          "level_3_correct",
+          "level_4_correct"
+        ]
+      }
+    },
+    {
+      "name": "predictions_retrieval\\blastp\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "target_id",
+          "predicted_ec",
+          "blast_pident",
+          "blast_evalue",
+          "blast_bitscore"
+        ]
+      }
+    },
+    {
+      "name": "predictions_retrieval\\blastp\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "target_id",
+          "predicted_ec",
+          "blast_pident",
+          "blast_evalue",
+          "blast_bitscore"
+        ]
+      }
+    },
+    {
+      "name": "predictions_retrieval\\foldseek\\predictions_30_50.csv",
+      "passed": true,
+      "detail": {
+        "rows": 477,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "target_id",
+          "predicted_ec",
+          "foldseek_bits",
+          "foldseek_alntmscore",
+          "foldseek_qtmscore",
+          "foldseek_ttmscore"
+        ]
+      }
+    },
+    {
+      "name": "predictions_retrieval\\foldseek\\predictions_lt30.csv",
+      "passed": true,
+      "detail": {
+        "rows": 243,
+        "columns": [
+          "protein_id",
+          "true_ec",
+          "target_id",
+          "predicted_ec",
+          "foldseek_bits",
+          "foldseek_alntmscore",
+          "foldseek_qtmscore",
+          "foldseek_ttmscore"
+        ]
+      }
+    },
+    {
+      "name": "gaca_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 75,
+        "reported": 75,
+        "refit": 75
+      }
+    },
+    {
+      "name": "seq_only_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 73,
+        "reported": 73,
+        "refit": 73
+      }
+    },
+    {
+      "name": "str_only_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 111,
+        "reported": 111,
+        "refit": 111
+      }
+    },
+    {
+      "name": "mean_vector_gate_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 96,
+        "reported": 96,
+        "refit": 96
+      }
+    },
+    {
+      "name": "attention_concat_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 72,
+        "reported": 72,
+        "refit": 72
+      }
+    },
+    {
+      "name": "mean_concat_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 47,
+        "reported": 47,
+        "refit": 47
+      }
+    },
+    {
+      "name": "cross_attention_selected_epoch",
+      "passed": true,
+      "detail": {
+        "best": 45,
+        "reported": 45,
+        "refit": 45
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "model": "knn",
+      "subset": "30_50",
+      "levels": [
+        0.8280922431865828,
+        0.7526205450733753,
+        0.7148846960167715,
+        0.6352201257861635
+      ],
+      "macro_f1": 0.6259338465925292,
+      "mcc": 0.6348656926546413
+    },
+    {
+      "model": "knn",
+      "subset": "lt30",
+      "levels": [
+        0.6419753086419753,
+        0.5473251028806584,
+        0.49382716049382713,
+        0.3868312757201646
+      ],
+      "macro_f1": 0.3827470686767169,
+      "mcc": 0.3862819668538707
+    },
+    {
+      "model": "lightgbm",
+      "subset": "30_50",
+      "levels": [
+        0.6561844863731656,
+        0.5262054507337526,
+        0.49266247379454925,
+        0.44863731656184486
+      ],
+      "macro_f1": 0.4194040490447676,
+      "mcc": 0.4481730315412376
+    },
+    {
+      "model": "lightgbm",
+      "subset": "lt30",
+      "levels": [
+        0.42386831275720166,
+        0.25925925925925924,
+        0.21810699588477367,
+        0.16049382716049382
+      ],
+      "macro_f1": 0.157286432160804,
+      "mcc": 0.1597915377653546
+    },
+    {
+      "model": "random_forest",
+      "subset": "30_50",
+      "levels": [
+        0.8071278825995807,
+        0.7337526205450734,
+        0.7044025157232704,
+        0.6561844863731656
+      ],
+      "macro_f1": 0.6372540633019675,
+      "mcc": 0.655870053047836
+    },
+    {
+      "model": "random_forest",
+      "subset": "lt30",
+      "levels": [
+        0.4897119341563786,
+        0.4279835390946502,
+        0.37448559670781895,
+        0.3045267489711934
+      ],
+      "macro_f1": 0.29050011964584826,
+      "mcc": 0.30360765405537926
+    },
+    {
+      "model": "svm",
+      "subset": "30_50",
+      "levels": [
+        0.8280922431865828,
+        0.7442348008385744,
+        0.7148846960167715,
+        0.6289308176100629
+      ],
+      "macro_f1": 0.5595808383233533,
+      "mcc": 0.6285775854289932
+    },
+    {
+      "model": "svm",
+      "subset": "lt30",
+      "levels": [
+        0.7489711934156379,
+        0.6337448559670782,
+        0.5802469135802469,
+        0.448559670781893
+      ],
+      "macro_f1": 0.3920315865039483,
+      "mcc": 0.44778747463393626
+    },
+    {
+      "model": "attention_concat",
+      "subset": "30_50",
+      "levels": [
+        0.9580712788259959,
+        0.9287211740041929,
+        0.8972746331236897,
+        0.8469601677148847
+      ],
+      "macro_f1": 0.834630738522954,
+      "mcc": 0.846864454509892
+    },
+    {
+      "model": "attention_concat",
+      "subset": "lt30",
+      "levels": [
+        0.8930041152263375,
+        0.8353909465020576,
+        0.8148148148148148,
+        0.7160493827160493
+      ],
+      "macro_f1": 0.694496290978703,
+      "mcc": 0.7156293179317554
+    },
+    {
+      "model": "cross_attention",
+      "subset": "30_50",
+      "levels": [
+        0.960167714884696,
+        0.9203354297693921,
+        0.8930817610062893,
+        0.8343815513626834
+      ],
+      "macro_f1": 0.8127174222982605,
+      "mcc": 0.8342193149350596
+    },
+    {
+      "model": "cross_attention",
+      "subset": "lt30",
+      "levels": [
+        0.8847736625514403,
+        0.8271604938271605,
+        0.8024691358024691,
+        0.7119341563786008
+      ],
+      "macro_f1": 0.6892318736539843,
+      "mcc": 0.7114601612644208
+    },
+    {
+      "model": "gaca",
+      "subset": "30_50",
+      "levels": [
+        0.9622641509433962,
+        0.9287211740041929,
+        0.89937106918239,
+        0.8490566037735849
+      ],
+      "macro_f1": 0.8334046193327631,
+      "mcc": 0.8489297507775689
+    },
+    {
+      "model": "gaca",
+      "subset": "lt30",
+      "levels": [
+        0.9012345679012346,
+        0.8436213991769548,
+        0.8189300411522634,
+        0.7325102880658436
+      ],
+      "macro_f1": 0.7172050729839674,
+      "mcc": 0.7321635438662001
+    },
+    {
+      "model": "mean_concat",
+      "subset": "30_50",
+      "levels": [
+        0.960167714884696,
+        0.9245283018867925,
+        0.8972746331236897,
+        0.8364779874213837
+      ],
+      "macro_f1": 0.8193826632449386,
+      "mcc": 0.8363413388968886
+    },
+    {
+      "model": "mean_concat",
+      "subset": "lt30",
+      "levels": [
+        0.897119341563786,
+        0.8395061728395061,
+        0.8065843621399177,
+        0.6872427983539094
+      ],
+      "macro_f1": 0.6715242881072027,
+      "mcc": 0.6867685397633337
+    },
+    {
+      "model": "mean_vector_gate",
+      "subset": "30_50",
+      "levels": [
+        0.9580712788259959,
+        0.9140461215932913,
+        0.8846960167714885,
+        0.8238993710691824
+      ],
+      "macro_f1": 0.8120045623039636,
+      "mcc": 0.8237780133466288
+    },
+    {
+      "model": "mean_vector_gate",
+      "subset": "lt30",
+      "levels": [
+        0.8888888888888888,
+        0.8148148148148148,
+        0.7860082304526749,
+        0.6954732510288066
+      ],
+      "macro_f1": 0.6819095477386934,
+      "mcc": 0.6949730021972469
+    },
+    {
+      "model": "seq_only",
+      "subset": "30_50",
+      "levels": [
+        0.9622641509433962,
+        0.9308176100628931,
+        0.9035639412997903,
+        0.8406708595387841
+      ],
+      "macro_f1": 0.8270031365839748,
+      "mcc": 0.8405451225223881
+    },
+    {
+      "model": "seq_only",
+      "subset": "lt30",
+      "levels": [
+        0.8765432098765432,
+        0.8353909465020576,
+        0.8189300411522634,
+        0.7119341563786008
+      ],
+      "macro_f1": 0.6979899497487437,
+      "mcc": 0.7115214384067482
+    },
+    {
+      "model": "str_only",
+      "subset": "30_50",
+      "levels": [
+        0.9350104821802935,
+        0.8951781970649895,
+        0.870020964360587,
+        0.7945492662473794
+      ],
+      "macro_f1": 0.7632591958939264,
+      "mcc": 0.7943300606010536
+    },
+    {
+      "model": "str_only",
+      "subset": "lt30",
+      "levels": [
+        0.8683127572016461,
+        0.8106995884773662,
+        0.7695473251028807,
+        0.6584362139917695
+      ],
+      "macro_f1": 0.632735104091888,
+      "mcc": 0.6579768006620568
+    },
+    {
+      "model": "blastp",
+      "subset": "30_50",
+      "levels": [
+        0.9475890985324947,
+        0.9161425576519916,
+        0.8888888888888888,
+        0.8113207547169812
+      ],
+      "macro_f1": 0.8092244083262048,
+      "mcc": 0.8111628697987097
+    },
+    {
+      "model": "blastp",
+      "subset": "lt30",
+      "levels": [
+        0.8600823045267489,
+        0.8065843621399177,
+        0.7695473251028807,
+        0.6666666666666666
+      ],
+      "macro_f1": 0.6536013400335008,
+      "mcc": 0.666235200845761
+    },
+    {
+      "model": "foldseek",
+      "subset": "30_50",
+      "levels": [
+        0.9622641509433962,
+        0.9308176100628931,
+        0.89937106918239,
+        0.8134171907756813
+      ],
+      "macro_f1": 0.8103554795171563,
+      "mcc": 0.813290218348546
+    },
+    {
+      "model": "foldseek",
+      "subset": "lt30",
+      "levels": [
+        0.9012345679012346,
+        0.8518518518518519,
+        0.823045267489712,
+        0.6995884773662552
+      ],
+      "macro_f1": 0.678894472361809,
+      "mcc": 0.6992249432214496
+    }
+  ]
+}

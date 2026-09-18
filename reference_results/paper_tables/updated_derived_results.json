@@ -1,0 +1,272 @@
+{
+  "paired_blastp": [
+    {
+      "dataset": "lt30",
+      "metric": "level4_accuracy",
+      "comparator": "BLASTp",
+      "comparator_value": 0.6666666666666666,
+      "gaca_value": 0.7325102880658436,
+      "difference": 0.06584362139917699,
+      "ci95_low": 0.024691358024691357,
+      "ci95_high": 0.11111111111111105,
+      "paired_p": 0.005222879350185395,
+      "paired_test": "exact two-sided McNemar",
+      "gaca_only_correct": 23.0,
+      "comparator_only_correct": 7.0,
+      "n": 243
+    },
+    {
+      "dataset": "lt30",
+      "metric": "macro_f1",
+      "comparator": "BLASTp",
+      "comparator_value": 0.6536013400335008,
+      "gaca_value": 0.7172050729839674,
+      "difference": 0.06360373295046662,
+      "ci95_low": 0.02713549058260227,
+      "ci95_high": 0.09999999999999998,
+      "paired_p": 0.0016,
+      "paired_test": "two-sided paired bootstrap",
+      "gaca_only_correct": NaN,
+      "comparator_only_correct": NaN,
+      "n": 243
+    },
+    {
+      "dataset": "30_50",
+      "metric": "level4_accuracy",
+      "comparator": "BLASTp",
+      "comparator_value": 0.8113207547169812,
+      "gaca_value": 0.8490566037735849,
+      "difference": 0.037735849056603765,
+      "ci95_low": 0.012578616352201255,
+      "ci95_high": 0.06289308176100628,
+      "paired_p": 0.0050976432976312935,
+      "paired_test": "exact two-sided McNemar",
+      "gaca_only_correct": 28.0,
+      "comparator_only_correct": 10.0,
+      "n": 477
+    },
+    {
+      "dataset": "30_50",
+      "metric": "macro_f1",
+      "comparator": "BLASTp",
+      "comparator_value": 0.8092244083262048,
+      "gaca_value": 0.8334046193327631,
+      "difference": 0.024180211006558316,
+      "ci95_low": 0.007830991235266893,
+      "ci95_high": 0.04982928525157641,
+      "paired_p": 0.0076,
+      "paired_test": "two-sided paired bootstrap",
+      "gaca_only_correct": NaN,
+      "comparator_only_correct": NaN,
+      "n": 477
+    }
+  ],
+  "paired_foldseek": [
+    {
+      "dataset": "lt30",
+      "metric": "level4_accuracy",
+      "comparator": "Foldseek",
+      "comparator_value": 0.6995884773662552,
+      "gaca_value": 0.7325102880658436,
+      "difference": 0.03292181069958844,
+      "ci95_low": -0.008230452674897085,
+      "ci95_high": 0.07407407407407407,
+      "paired_p": 0.1849333420395851,
+      "paired_test": "exact two-sided McNemar",
+      "gaca_only_correct": 18.0,
+      "comparator_only_correct": 10.0,
+      "n": 243
+    },
+    {
+      "dataset": "lt30",
+      "metric": "macro_f1",
+      "comparator": "Foldseek",
+      "comparator_value": 0.678894472361809,
+      "gaca_value": 0.7172050729839674,
+      "difference": 0.03831060062215841,
+      "ci95_low": -0.0010998774509804962,
+      "ci95_high": 0.07046480134837181,
+      "paired_p": 0.0592,
+      "paired_test": "two-sided paired bootstrap",
+      "gaca_only_correct": NaN,
+      "comparator_only_correct": NaN,
+      "n": 243
+    },
+    {
+      "dataset": "30_50",
+      "metric": "level4_accuracy",
+      "comparator": "Foldseek",
+      "comparator_value": 0.8134171907756813,
+      "gaca_value": 0.8490566037735849,
+      "difference": 0.03563941299790363,
+      "ci95_low": 0.010482180293501009,
+      "ci95_high": 0.06079664570230614,
+      "paired_p": 0.009475304279476404,
+      "paired_test": "exact two-sided McNemar",
+      "gaca_only_correct": 28.0,
+      "comparator_only_correct": 11.0,
+      "n": 477
+    },
+    {
+      "dataset": "30_50",
+      "metric": "macro_f1",
+      "comparator": "Foldseek",
+      "comparator_value": 0.8103554795171563,
+      "gaca_value": 0.8334046193327631,
+      "difference": 0.023049139815606856,
+      "ci95_low": 0.006810971100898508,
+      "ci95_high": 0.050304034530363424,
+      "paired_p": 0.0132,
+      "paired_test": "two-sided paired bootstrap",
+      "gaca_only_correct": NaN,
+      "comparator_only_correct": NaN,
+      "n": 477
+    }
+  ],
+  "long_tail": [
+    {
+      "dataset": "lt30",
+      "training_examples_per_ec": "1-2",
+      "number_of_ec_classes": 73,
+      "test_proteins": 81,
+      "blastp_accuracy_pct": 54.32098765432099,
+      "gaca_accuracy_pct": 58.0246913580247,
+      "delta_pct": 3.703703703703709,
+      "blastp_macro_f1": 0.5433789954337899,
+      "gaca_macro_f1": 0.5844748858447488
+    },
+    {
+      "dataset": "lt30",
+      "training_examples_per_ec": "3-5",
+      "number_of_ec_classes": 45,
+      "test_proteins": 51,
+      "blastp_accuracy_pct": 62.745098039215684,
+      "gaca_accuracy_pct": 80.3921568627451,
+      "delta_pct": 17.647058823529417,
+      "blastp_macro_f1": 0.6103703703703705,
+      "gaca_macro_f1": 0.7925925925925925
+    },
+    {
+      "dataset": "lt30",
+      "training_examples_per_ec": "6-10",
+      "number_of_ec_classes": 26,
+      "test_proteins": 30,
+      "blastp_accuracy_pct": 63.33333333333333,
+      "gaca_accuracy_pct": 60.0,
+      "delta_pct": -3.3333333333333326,
+      "blastp_macro_f1": 0.6666666666666666,
+      "gaca_macro_f1": 0.6282051282051282
+    },
+    {
+      "dataset": "lt30",
+      "training_examples_per_ec": ">10",
+      "number_of_ec_classes": 55,
+      "test_proteins": 81,
+      "blastp_accuracy_pct": 82.71604938271605,
+      "gaca_accuracy_pct": 88.88888888888889,
+      "delta_pct": 6.172839506172833,
+      "blastp_macro_f1": 0.8351515151515151,
+      "gaca_macro_f1": 0.8846753246753247
+    },
+    {
+      "dataset": "30_50",
+      "training_examples_per_ec": "1-2",
+      "number_of_ec_classes": 95,
+      "test_proteins": 118,
+      "blastp_accuracy_pct": 64.40677966101694,
+      "gaca_accuracy_pct": 60.16949152542372,
+      "delta_pct": -4.23728813559322,
+      "blastp_macro_f1": 0.6733333333333333,
+      "gaca_macro_f1": 0.6312280701754386
+    },
+    {
+      "dataset": "30_50",
+      "training_examples_per_ec": "3-5",
+      "number_of_ec_classes": 67,
+      "test_proteins": 100,
+      "blastp_accuracy_pct": 77.0,
+      "gaca_accuracy_pct": 85.0,
+      "delta_pct": 7.9999999999999964,
+      "blastp_macro_f1": 0.7701492537313434,
+      "gaca_macro_f1": 0.8308457711442786
+    },
+    {
+      "dataset": "30_50",
+      "training_examples_per_ec": "6-10",
+      "number_of_ec_classes": 49,
+      "test_proteins": 66,
+      "blastp_accuracy_pct": 87.87878787878788,
+      "gaca_accuracy_pct": 95.45454545454545,
+      "delta_pct": 7.57575757575758,
+      "blastp_macro_f1": 0.8707482993197279,
+      "gaca_macro_f1": 0.9523809523809523
+    },
+    {
+      "dataset": "30_50",
+      "training_examples_per_ec": ">10",
+      "number_of_ec_classes": 123,
+      "test_proteins": 193,
+      "blastp_accuracy_pct": 91.19170984455958,
+      "gaca_accuracy_pct": 96.37305699481865,
+      "delta_pct": 5.181347150259064,
+      "blastp_macro_f1": 0.9264808362369338,
+      "gaca_macro_f1": 0.9588075880758807
+    }
+  ],
+  "cases": [
+    {
+      "dataset": "lt30",
+      "case_type": "BLASTp wrong, GaCA correct",
+      "query_id": "P24546",
+      "true_ec": "3.1.21.4",
+      "blastp_prediction": "1.4.4.2",
+      "gaca_prediction": "3.1.21.4",
+      "gaca_top_class_softmax_score": 0.970496416091919
+    },
+    {
+      "dataset": "lt30",
+      "case_type": "Both correct",
+      "query_id": "C8VC05",
+      "true_ec": "4.2.99.18",
+      "blastp_prediction": "4.2.99.18",
+      "gaca_prediction": "4.2.99.18",
+      "gaca_top_class_softmax_score": 0.996232807636261
+    },
+    {
+      "dataset": "lt30",
+      "case_type": "BLASTp correct, GaCA wrong",
+      "query_id": "Q9TZI1",
+      "true_ec": "2.7.1.138",
+      "blastp_prediction": "2.7.1.138",
+      "gaca_prediction": "2.7.1.91",
+      "gaca_top_class_softmax_score": 0.8201947808265686
+    },
+    {
+      "dataset": "30_50",
+      "case_type": "BLASTp wrong, GaCA correct",
+      "query_id": "P50195",
+      "true_ec": "3.1.21.4",
+      "blastp_prediction": "6.2.1.3",
+      "gaca_prediction": "3.1.21.4",
+      "gaca_top_class_softmax_score": 0.99485445022583
+    },
+    {
+      "dataset": "30_50",
+      "case_type": "Both correct",
+      "query_id": "Q2RP80",
+      "true_ec": "3.1.2.6",
+      "blastp_prediction": "3.1.2.6",
+      "gaca_prediction": "3.1.2.6",
+      "gaca_top_class_softmax_score": 0.9927734732627868
+    },
+    {
+      "dataset": "30_50",
+      "case_type": "BLASTp correct, GaCA wrong",
+      "query_id": "P13063",
+      "true_ec": "1.12.99.6",
+      "blastp_prediction": "1.12.99.6",
+      "gaca_prediction": "1.12.98.3",
+      "gaca_top_class_softmax_score": 0.8137598037719727
+    }
+  ]
+}

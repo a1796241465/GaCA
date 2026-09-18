@@ -1,0 +1,597 @@
+diff --git a/README.md b/README.md
+index 80e6ba8..6ce1da3 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,6 @@
+ # GaCA
+ 
+-This repository contains the code and archived outputs for the GaCA rerun that achieved Level-4 accuracies of 73.25% on the CARE `<30%` subset and 84.91% on the CARE `30-50%` subset. The current reproducible pipeline is the main source tree. Earlier research scripts are retained under `legacy/`.
++This repository contains the code and archived outputs for the GaCA rerun that achieved Level-4 accuracies of 73.25% on the CARE `<30%` subset and 84.91% on the CARE `30-50%` subset. The main source tree implements the rerun protocol; a fresh end-to-end run from downloaded structures has not been verified. Earlier research scripts are retained under `legacy/`.
+ 
+ ## Repository layout
+ 
+@@ -25,15 +25,27 @@ The benchmark splits come from the [CARE paper](https://proceedings.neurips.cc/p
+ 
+ ## Environment
+ 
+-Run the commands below from the repository root on Linux. The completed server rerun used Python 3.9.23, PyTorch 2.2.2, CUDA, and an NVIDIA RTX 4090.
++Run the commands below from the repository root on Linux with an NVIDIA GPU. The supplied environment targets the server runs (Python 3.9, PyTorch 2.2.2); it is not an exact lock of the original GaCA environment. Local experiment records report Python 3.12.4, PyTorch 2.4.0 and an RTX 4060 Laptop GPU. The archived `gaca_environment_and_config.json` was overwritten by a cross-attention run and is not a GaCA-specific launch record. Different environments can change training trajectories despite a fixed seed.
+ 
+ ```bash
+ conda env create -f environment.yml
+ conda activate gaca
++python -m pip install torch-scatter==2.1.2 --only-binary=:all: -f https://data.pyg.org/whl/torch-2.2.0+cu121.html
++python -c "import torch, torch_geometric, torch_scatter, esm.inverse_folding; assert torch.cuda.is_available(); print(torch.__version__, torch.version.cuda)"
+ ```
+ 
+ BLAST+ and Foldseek are external command-line dependencies and must be available on `PATH` for those baselines.
+ 
++ESM-IF1 requires PyTorch Geometric and torch-scatter; `fair-esm` alone is insufficient. The binary command above is for the supplied PyTorch/CUDA environment. This installation has not been tested in a clean environment during the audit.
++
++CARE revisions and AlphaFold DB structures may change. The release does not distribute the original feature arrays or pin all structure files by checksum. Matching sample counts alone does not establish identical inputs. The default export and neural-training checks require the archived ID order and labels; a mismatch must be investigated, not bypassed to claim reproduction of 73.25%. See `docs/INDEPENDENT_AUDIT.md` for verified evidence and remaining risks.
++
++## Verification status
++
++Archived inputs, checkpoint, split, label mapping, metrics, and paired statistics have been independently verified. Checkpoint inference was rerun on the original embeddings: GaCA reproduced 178/243 correct predictions (73.25%) on the `<30%` subset and 405/477 (84.91%) on the `30-50%` subset, with protein-level predictions identical to the archived results.
++
++A fresh CARE/AlphaFold download, fresh ESM-2/ESM-IF1 extraction, complete neural and classical-model retraining, BLASTp/Foldseek searches, and cross-environment identity of training trajectories have not been validated. Checkpoint replay is therefore not presented as a fresh end-to-end reproduction. The detailed evidence and limitations are recorded in [`docs/INDEPENDENT_AUDIT.md`](docs/INDEPENDENT_AUDIT.md).
++
+ ## 1. Download CARE and select candidates
+ 
+ ```bash
+diff --git a/baselines/classical/train.py b/baselines/classical/train.py
+index f47f0b1..47bfeaf 100644
+--- a/baselines/classical/train.py
++++ b/baselines/classical/train.py
+@@ -140,7 +140,7 @@ def model_and_parameters(name):
+         parameters = {"n_neighbors": 1, "metric": "cosine", "n_jobs": -1}
+         return KNeighborsClassifier(**parameters), parameters
+     if name == "svm":
+-        parameters = {"C": 1.0, "max_iter": 1000, "random_state": 42}
++        parameters = {"C": 1.0, "max_iter": 1000, "random_state": 42, "dual": True}
+         return LinearSVC(**parameters), parameters
+     if name == "random_forest":
+         parameters = {
+diff --git a/common/protocol.py b/common/protocol.py
+index 2b2fdfc..004b7ec 100644
+--- a/common/protocol.py
++++ b/common/protocol.py
+@@ -1,6 +1,7 @@
+ from pathlib import Path
+ 
+ import numpy as np
++import pandas as pd
+ 
+ 
+ EXPECTED_COUNTS = {
+@@ -68,3 +69,24 @@ def validate_final_protocol(train_dataset, test_datasets):
+     expected = {key: EXPECTED_COUNTS[key] for key in observed}
+     if observed != expected:
+         raise ValueError(f"Expected final protocol {expected}, found {observed}")
++    validate_reference_tables({
++        "train": train_dataset.frame,
++        **{name: dataset.frame for name, dataset in test_datasets.items()},
++    })
++    reference = pd.read_csv(
++        Path(__file__).resolve().parents[1] / "metadata" / "label_mapping_reference.csv"
++    ).sort_values("class_index")
++    if not np.array_equal(train_dataset.label_encoder.classes_, reference["ec_label"]):
++        raise ValueError("Class-index mapping differs from the archived 73.25% run")
++
++
++def validate_reference_tables(tables):
++    metadata = Path(__file__).resolve().parents[1] / "metadata"
++    for name, frame in tables.items():
++        validate_frame(frame, name)
++        reference = pd.read_csv(metadata / f"effective_{name}.csv", dtype=str)
++        actual = frame[["Entry", "EC number"]].astype(str).reset_index(drop=True)
++        if not actual.equals(reference):
++            raise ValueError(
++                f"{name}: protein IDs, row order, or labels differ from the archived run"
++            )
+diff --git a/docs/INDEPENDENT_AUDIT.md b/docs/INDEPENDENT_AUDIT.md
+new file mode 100644
+index 0000000..f199236
+--- /dev/null
++++ b/docs/INDEPENDENT_AUDIT.md
+@@ -0,0 +1,173 @@
++# GaCA-73.25-release 独立科研复现审计
++
++完成日期：2026-09-15。审计对象：`D:\EC\GaCA-73.25-release`。
++
++## 结论摘要
++
++**原始结果的保存和重放有直接证据支持，但尚未证明从新下载数据到完整重训的流程可以恢复相同结果。**
++
++本次独立对照了原始重跑目录、CARE 本地源 CSV、原始 feature store、固定划分、日志、checkpoint 和逐蛋白预测，没有把上一轮总结作为通过依据。进行了完整测试集 checkpoint 推理；没有重新训练，没有运行 BLASTp/Foldseek 搜索，没有重新提取 embedding。
++
++正式结论见 A–E。原始探针输出中有几个初步报警，已在 `audit_evidence/final_evidence.json` 的 `resolutions` 中解释；不能把初步报警数量当成最终 FAIL 数量。
++
++## A. PASS：有证据验证
++
++### A1. 数据与划分
++
++| 检查 | 实测结果 |
++|---|---|
++| 有效训练蛋白 | 13,671 |
++| fitting / validation | 12,303 / 1,368 |
++| 训练标签 | 3,811，fitting 覆盖全部标签 |
++| 两个评估子集 | 243 / 477 |
++| 固定划分 CSV | 与原始文件逐行一致 |
++| class_index / ec_label mapping | 与原始文件逐行一致 |
++| 有效 ID、标签、行序 | 从原始 CSV 与 feature 索引重新求交后完全一致 |
++| 重复有效 ID | 无 |
++| train/test、test/test ID 交集 | 无 |
++| 上述集合的完全相同序列 SHA256 交集 | 无 |
++| fitting/validation 完全相同序列 SHA256 交集 | 无 |
++
++CARE 原始训练 CSV 有 28,316 行、134 行重复 ID，其中 131 个 ID 有多个 EC 标签。直接按 ID 索引会展开重复行，导致初步比较不一致。按实际 `sample_training(..., 600, 25, 42)` 的采样和首个 ID 保留规则重建后，原始 13,727 行来源表的 ID、标签、序列和顺序全部一致。被选中的来源 ID 中有 93 个来自多标签 ID；单标签选择规则继承原实验，本轮未改。
++
++21 个训练蛋白和一个 30–50% 测试蛋白的第四字段含 `n` 前缀，是原始来源中的标签字符串。全数字 EC 正则的报警属于审计探针过严，并非新产生的标签错位；这些标签保持原样，仍按四个字段计算层级指标。
++
++以上没有覆盖全部序列成对 identity、近同源泄漏或预训练语料污染，不能推广为所有形式的 data leakage 均已排除。
++
++### A2. 已保存的 embedding 与结构抽查
++
++| store | 蛋白数 | 原始数组 shape |
++|---|---:|---|
++| seq_train | 13,671 | (4,788,944, 1280) |
++| str_train | 13,727 | (4,808,447, 512) |
++| seq_lt30 | 312 | (119,017, 1280) |
++| str_lt30 | 314 | (120,375, 512) |
++| seq_30_50 | 549 | (229,375, 1280) |
++| str_30_50 | 549 | (229,375, 512) |
++
++六个索引的 ID 唯一，offset 连续且合法，length 总和等于数组行数，dtype 均为 float16。每个数组抽查 1,000 行，未见非有限值；没有扫描全部数组的每个值。release 的输入 ID manifest 与原始索引一致，结构长度 manifest 一致。
++
++数据读取按 protein ID 查询两个 store，不依赖两个文件的行序相同。独立 pooling 不要求两个模态的残基数相等。
++
++三个原始 PDB 目录分别等间隔抽查 30 个，共 90 个：新提取器按残基组成的 N/CA/C 坐标与旧提取器结果逐值相同，长度与原始 embedding 索引一致。有序列 manifest 的抽查条目，其重建序列哈希也一致。这里只验证了抽样坐标与序列输入，没有重新运行 ESM 编码器。
++
++### A3. 模型和 checkpoint
++
++checkpoint 全部 29 个 state_dict 张量与原文件逐个完全相同，严格加载也覆盖了 BatchNorm buffer，而非仅检查能否 load。
++
++| 模块 | 可训练参数 |
++|---|---:|
++| seq_pool | 164,097 |
++| str_pool | 65,793 |
++| seq_proj | 656,896 |
++| str_proj | 263,680 |
++| gate | 787,456 |
++| classifier | 2,218,723 |
++| 合计 | **4,156,645** |
++
++projection 为独立 Linear + LayerNorm + Dropout；attention scorer 为 Linear → Tanh → Linear；gate 为 Linear → ReLU → Linear → Sigmoid；融合为 gate × structure + (1 − gate) × sequence。classifier 保留 Linear、BatchNorm、GELU、Dropout、Linear。
++
++release 增加了 `forward_with_gate` 导出接口，没有新增可训练模块。原始模型与 release 在 eval 和固定随机种子的 train 合成测试中，logits 最大绝对差均为 0.0。全部参数在反向测试中获得梯度；改变被 mask 的 padding 数值不改变 eval 输出。
++
++checkpoint SHA256：`cdcd4da798a95322f712c6901ecf862a23e80180736d7f9fe7ac3251928f66ef`。
++
++### A4. 训练配置与指标
++
++GaCA 默认/README 配置是 batch 128、AdamW、learning rate 1e-4、weight decay 5e-3、label smoothing 0.1、hidden dimension 512、dropout 0.5、max epochs 120、patience 30、seed 42、CUDA AMP。没有 scheduler。这些参数实际用于构造器及训练循环，未发现 GaCA 主要训练参数仅声明而未生效。
++
++训练 epoch、validation、DataLoader、划分生成、随机种子函数与原始代码 AST 一致。validation accuracy 严格提高时更新 best epoch；之后重置 seed、重新初始化，在全部 13,671 个训练蛋白上训练所选轮数。GaCA 存档 history 的首次最高验证准确率位于 epoch 75，metrics 记录 75，full-refit history 恰为 75 轮。其余六个神经变体的选轮数与 history 也一致。
++
++固定 split 文件存在时，`--validation-ratio` 和新的 `--seed` 不重新划分该 CSV，这是固定划分设计。`--refit-only-epochs` 会跳过 tuning，不属于主 README 命令。运行环境 JSON 曾被覆盖，因此不能把以上静态配置和日志核对称为原 GaCA 完整 launch record 已恢复。
++
++Level-1/2/3 按前缀、Level-4 按完整标签计算。过滤依据是模态可用性和训练标签空间，未依据测试预测正确与否过滤。NPZ 的 protein_ids、true_indices、argmax 与预测 CSV 一致；probability 行和有效，gate shape 为 (N,512)，数值有限且在 (0,1)。
++
++### A5. 完整 checkpoint 推理与统计复算
++
++使用 release 推理入口、存档 checkpoint、本机原始 feature store，以 batch 128、CUDA AMP 推理全部测试蛋白：
++
++| 子集 | 正确数 / 总数 | Level-4 accuracy | 逐蛋白预测 |
++|---|---|---|---|
++| <30% | 178 / 243 | 73.25% | 与原始结果逐行一致 |
++| 30–50% | 405 / 477 | 84.91% | 与原始结果逐行一致 |
++
++26 份各方法的标准预测 CSV 均使用相同 243 / 477 个 ID，真实标签一致，无重复计数。独立重算 Level-1 至 Level-4、macro-F1、MCC，与最终汇总最大绝对差为 1.11e-16。
++
++LightGBM 的存档 mapping 与固定划分相符。代码按 ID 取 mean-pooled 1280+512 特征，拼接后逐蛋白 L2 normalization，不是在测试集拟合 scaler。500 棵上限和 early stopping 30 确实传入训练；存档 best iteration 为 349。未重新训练 LightGBM。
++
++| GaCA − baseline | 子集 | 准确率差（百分点） | 95% CI（百分点） | exact McNemar p |
++|---|---|---:|---|---:|
++| BLASTp | <30% | 6.58 | [2.47, 11.11] | 0.00522287935 |
++| BLASTp | 30–50% | 3.77 | [1.26, 6.29] | 0.00509764330 |
++| Foldseek | <30% | 3.29 | [-0.82, 7.41] | 0.18493334204 |
++| Foldseek | 30–50% | 3.56 | [1.05, 6.08] | 0.00947530428 |
++
++独立实现没有调用 release 的 `paired_bootstrap`，使用相同配对抽样序列独立计算 correctness/macro-F1，并以组合数计算 exact McNemar。两张存档表共八行的 difference、CI、p 最大差小于 1e-16。macro-F1 bootstrap p 分别为 0.0016、0.0076、0.0592、0.0132，均与存档一致。
++
++此前“差值 0.0”在论文显示精度上成立，但不是完整实验复现证明。本次对照的是 `reference_results/paper_tables` 存档表，没有重新打开最新版 final.tex 逐格核对，更没有修改论文。
++
++## B. WARNING：未实证验证
++
++1. 未从头安装 environment.yml。本机缺 fair-esm，两个 embedding extractor 的 CLI/推理均未验证。其余 README 中 17 个 Python 模块的 `--help` 成功，仅代表接口导入通过。
++2. 未重新下载 CARE、AlphaFold 结构或编码器权重，未重新提取 embedding。90 个 PDB 抽查不能代表全部原子坐标验证。
++3. 未完整重训神经网络、LightGBM 或经典 baseline。checkpoint 重放不证明跨平台训练轨迹一致。
++4. 未执行 BLASTp/Foldseek 外部搜索。README 输入输出路径、FASTA/PDB 与 TSV 列定义、统计与绘图输入在静态检查中能衔接；外部工具版本和并列 top-hit 行为仍未复验。
++5. 多标签源记录的单标签取舍、全部近同源关系、预训练语料覆盖不属于已通过范围。
++
++## C. FAIL：发现的问题及修复
++
++| 问题及影响 | 修复文件与方式 | 是否影响原始 73.25% |
++|---|---|---|
++| ESM-IF1 依赖遗漏，干净环境可能无法导入 | environment.yml、requirements.txt、README.md：补 PyG，指定建议环境 CUDA 12.1，提供匹配 scatter wheel 和导入检查命令 | 不改 GaCA；安装与 fresh embedding 仍未实测 |
++| README 混同服务器/原 GaCA 环境；所谓 GaCA config 实为 cross-attention | README 澄清；gaca/train.py 为新运行按模型保存配置；旧 PIPELINE_AUDIT.md 标明由本报告取代 | 不改结果；历史配置缺失无法凭空恢复 |
++| SVM 的 dual 默认随 sklearn 版本改变 | baselines/classical/train.py 显式 dual=True，恢复原 sklearn 1.4.2 的选择 | 不影响 GaCA；避免新 SVM 改用另一求解器，未重训 SVM |
++| 仅核对样本数不能阻止换 ID、标签或顺序 | common/protocol.py、preprocessing/export_effective.py、gaca/train.py、gaca/evaluate.py：默认核对存档 ID/标签/行序、mapping、split 标签 | 原始输入通过；错误输入报错，不静默改样本 |
++| 源 embedding 更新后可能跳过旧缓存；可整除错误 shape 被强行 reshape | embeddings/build_store.py：检查来源 path/size/mtime/dimension，拒绝错误 shape、空值、非有限或 float16 溢出、规范化后重复 ID | 合法原数组不变；过期缓存需显式重建，不是完整内容哈希保护 |
++| 配对 inner join 可静默丢弃 baseline 多余 ID | evaluation/paired_statistics.py：先检查 ID 非空、唯一、集合相同 | 当前配对不变；错误输入报错 |
++| standalone evaluate 的 AMP 条件与训练入口不同，CPU 也可能启用 float16 | gaca/evaluate.py：AMP 限定为 CUDA，并验证默认协议 | 原 CUDA 推理不变 |
++
++新增 `tests/test_release_guards.py`：8/8 回归测试通过；主树 40 个 Python 文件语法检查通过。此次不改 GaCA 架构或训练超参数，不改旧目录、权重、存档结果、图或论文。
++
++### 未修复的预处理缺陷
++
++`preprocessing/align_sequences.py::alignment_bounds` 使用无 gap 惩罚的 globalxx，identity 仅计双方非 gap 的列。实际调用 `alignment_bounds('ACDEFG','AEDCFG')` 返回 `(0,6,0,6,1.0)`。这个 1.0 不能可靠证明两个保留区间高度一致；短例仅测试函数，不涉及 main 的最小长度限制。
++
++该规则继承旧流程。改 alignment/scoring/coverage 会改变过滤条件，可能改变有效集合与 73.25%，因此本次没有静默替换实验规则。需要作者决定保留历史模式并说明局限，还是另行验证修正后的过滤流程。90 个原始结构抽查无序列哈希差异，不足以证明所有输入不受影响。
++
++## D. REPRODUCIBILITY RISK
++
++- **原始输入未完整冻结。** 已有 ID、label、序列哈希/截取范围和结构长度，但未分发原始 feature arrays，也未固定全部 PDB 内容哈希和版本。新下载的缺失状态与内容可能不同。加强校验只能报错，不能恢复旧输入。
++- **环境与 provenance 不完整。** 原日志支持参数量和 batch，history 支持 epoch 75，但共享环境 JSON 被覆盖。建议 Linux/PyTorch 2.2.2 环境与本地原实验记录的 Windows/PyTorch 2.4.0 不同。固定 seed、deterministic cuDNN 不保证跨版本逐位复现。
++- **LightGBM 行采样未启用。** 实测默认 subsample_freq=0，因此 subsample=0.8 不等于训练用了 80% 行采样；原实验同样如此。本轮没有改为正 frequency，否则会改变 baseline 算法。
++- **bootstrap 的统计解释仍需谨慎。** macro-F1 的每个 replicate 重新选择其出现的真值类别；支持集合随抽样变化。p 为经验分布的两倍较小尾部概率，并非 exact randomization test。本轮确认配对与数字可复算，未验证该程序的覆盖率/错误率，也未替换检验。
++- **检索结果重算不等于检索重跑。** 外部版本、数据库顺序和并列分数处理尚需正式比对。
++- **遗留与主流程区分。** 主流程代码未发现旧 GaCA-GitHub 绝对路径或私有环境变量依赖；legacy 和 provenance JSON 的历史路径仍保留。本次外部审计脚本读取原目录是证据对照，不是 release 运行依赖。
++
++## E. FINAL VERDICT
++
++**在保留本报告所列限制的前提下，可以冻结为 historical research-code release；不能标为“从原始下载到完整重训已经验证”的 end-to-end reproduction。**
++
++核心架构、权重、固定划分、checkpoint 推理、存档指标和配对统计有证据支持。不能无条件通过的原因是 fresh extraction/refit 未执行、原始输入/环境未完全冻结，以及对齐过滤的已知缺陷，不是存档 73.25% 算错。
++
++**基于现有证据，我是否相信这套代码能够复现原始 73.25% 结果？基本是但仍需验证。**
++
++最关键的原因：原模型与权重一致且原始 embedding 上 720 个预测完全复现；固定划分和 75 轮选择可核实；重新下载、提取及从头训练的整条链尚未实证，不能用 checkpoint 重放作无条件保证。
++
++## 证据与复核
++
++- `audit_evidence/evidence.json`：首次逐项检查，含初步探针报警。
++- `audit_evidence/second_evidence.json`：原始坐标抽查、模型前向、独立指标与统计复算。
++- `audit_evidence/final_evidence.json`：最终来源核验、报警解释、完整推理、CLI、语法及修改清单。
++- `audit_evidence/changes.diff`：本轮既有文件的精确变更。
++- `audit_evidence/inference_artifacts_summary.json`：本次完整 checkpoint 推理摘要。
++- 本机额外证据及修改前备份：`C:\Users\a1796\gaca_independent_audit`。
++
++`changes.diff` 由上述可信审计前备份与当前文件重新生成，并通过 `git apply --check` 验证；它不是根据报告人工还原的 diff。其完整性范围限于备份覆盖的既有文件以及本轮新增的测试和审计报告。
++
++轻量回归命令：`python -m unittest discover -s tests -v`，不训练模型。
++
++外部依据仅用于依赖/default 行为核查，不作新实验依据：
++
++- [ESM-IF1 官方环境说明](https://github.com/facebookresearch/esm/tree/main/examples/inverse_folding)
++- [PyG 安装说明](https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html) 与 [PyTorch 2.2 / CUDA 12.1 wheels](https://data.pyg.org/whl/torch-2.2.0+cu121.html)
++- [sklearn 1.4.2 LinearSVC 默认值及变更](https://scikit-learn.org/1.4/modules/generated/sklearn.svm.LinearSVC.html)
++- [LightGBM 4.6.0 参数说明](https://lightgbm.readthedocs.io/en/v4.6.0/Parameters.html)
+diff --git a/docs/PIPELINE_AUDIT.md b/docs/PIPELINE_AUDIT.md
+index aef4585..2b37361 100644
+--- a/docs/PIPELINE_AUDIT.md
++++ b/docs/PIPELINE_AUDIT.md
+@@ -1,5 +1,7 @@
+ # Pipeline audit
+ 
++This is the initial packaging review, not evidence of a fresh end-to-end reproduction. The independent audit in `INDEPENDENT_AUDIT.md` supersedes its verification claims.
++
+ The release was checked against the completed 73.25%/84.91% rerun protocol.
+ 
+ - The main runner accepts an explicit data root. The previous unified runner had a hard-coded repository-relative data path.
+@@ -10,4 +12,4 @@ The release was checked against the completed 73.25%/84.91% rerun protocol.
+ - Retrieval outputs retain top-hit identity and score fields, allowing paired tables to be rebuilt directly from new BLASTp and Foldseek runs.
+ - The README uses direct commands. Earlier wrapper scripts are retained only under `legacy/`.
+ 
+-The main source tree passes syntax compilation and CLI import checks. Full GPU training and the external BLASTp/Foldseek searches were not repeated locally; their completed outputs are retained under `reference_results/`.
++The main source tree passes syntax compilation. Non-embedding CLI imports were checked; ESM-2 and ESM-IF1 imports were not verified locally because fair-esm was unavailable. Full GPU training and the external BLASTp/Foldseek searches were not repeated locally; their completed outputs are retained under `reference_results/`.
+diff --git a/embeddings/build_store.py b/embeddings/build_store.py
+index 5402d57..c75d334 100644
+--- a/embeddings/build_store.py
++++ b/embeddings/build_store.py
+@@ -26,7 +26,8 @@ def as_matrix(value, expected_dim):
+     if torch.is_tensor(value):
+         value = value.detach().cpu().numpy()
+     array = np.asarray(value)
+-    if array.size % expected_dim:
++    if (array.ndim not in (2, 3) or array.shape[-1] != expected_dim
++            or (array.ndim == 3 and array.shape[1] != 1) or array.size == 0):
+         raise ValueError(
+             f"Feature with shape {array.shape} cannot be reshaped to (-1, {expected_dim})"
+         )
+@@ -41,6 +42,15 @@ def build_store(name, source, expected_dim, output_root, overwrite=False):
+     metadata_path = destination / "metadata.json"
+ 
+     if values_path.exists() and index_path.exists() and not overwrite:
++        if not metadata_path.exists() or not source.exists():
++            raise ValueError(f"{name}: cannot verify existing store; supply its source and rebuild with --overwrite")
++        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
++        signature = (str(source), source.stat().st_size, source.stat().st_mtime_ns, expected_dim)
++        saved = tuple(metadata.get(key) for key in (
++            "source", "source_size_bytes", "source_mtime_ns", "feature_dim"
++        ))
++        if signature != saved:
++            raise ValueError(f"{name}: source changed; rebuild the store with --overwrite")
+         print(f"[skip] {name}: store already exists at {destination}", flush=True)
+         return
+ 
+@@ -52,8 +62,14 @@ def build_store(name, source, expected_dim, output_root, overwrite=False):
+     entries = []
+     total_rows = 0
+     source_dtypes = set()
++    seen_ids = set()
+     for protein_id, value in features.items():
++        if str(protein_id) in seen_ids:
++            raise ValueError(f"{name}: duplicate canonical protein ID {protein_id}")
++        seen_ids.add(str(protein_id))
+         matrix = as_matrix(value, expected_dim)
++        if not np.isfinite(matrix).all() or np.any(np.abs(matrix) > np.finfo(np.float16).max):
++            raise ValueError(f"{name}: invalid or float16-overflowing features for {protein_id}")
+         entries.append((protein_id, str(protein_id), total_rows, matrix.shape[0]))
+         total_rows += matrix.shape[0]
+         source_dtypes.add(str(matrix.dtype))
+diff --git a/environment.yml b/environment.yml
+index 72f84c9..f442819 100644
+--- a/environment.yml
++++ b/environment.yml
+@@ -7,6 +7,7 @@ dependencies:
+   - python=3.9
+   - pip
+   - pytorch=2.2.2
++  - pytorch-cuda=12.1
+   - numpy=1.26.4
+   - pandas=2.3.2
+   - scikit-learn=1.6.1
+@@ -20,4 +21,5 @@ dependencies:
+   - openpyxl
+   - pip:
+       - fair-esm==2.0.0
+-      - lightgbm==4.6.0
+\ No newline at end of file
++      - torch-geometric==2.5.3
++      - lightgbm==4.6.0
+diff --git a/evaluation/paired_statistics.py b/evaluation/paired_statistics.py
+index 93ed8da..f0f16cc 100644
+--- a/evaluation/paired_statistics.py
++++ b/evaluation/paired_statistics.py
+@@ -88,6 +88,27 @@ def load_joined(
+     gaca = pd.read_csv(rerun / f"predictions_{suffix}.csv", dtype={"protein_id": str})
+     blastp = pd.read_csv(blastp_dir / f"predictions_{suffix}.csv", dtype={"protein_id": str})
+     foldseek = pd.read_csv(foldseek_dir / f"predictions_{suffix}.csv", dtype={"protein_id": str})
++    gaca_labels = None
++    for name, frame in (("GaCA", gaca), ("BLASTp", blastp), ("Foldseek", foldseek)):
++        required = {"protein_id", "true_ec"}
++        missing = required.difference(frame.columns)
++        if missing:
++            raise ValueError(f"{dataset}: {name} is missing columns: {sorted(missing)}")
++        if frame["protein_id"].isna().any() or frame["protein_id"].duplicated().any():
++            raise ValueError(f"{dataset}: {name} has missing or duplicate protein IDs")
++        if frame["true_ec"].isna().any():
++            raise ValueError(f"{dataset}: {name} has missing ground-truth EC labels")
++        if set(frame["protein_id"]) != set(gaca["protein_id"]):
++            raise ValueError(f"{dataset}: {name} test IDs differ from GaCA")
++        labels = frame.set_index("protein_id")["true_ec"].astype(str).sort_index()
++        if gaca_labels is None:
++            gaca_labels = labels
++        elif not labels.equals(gaca_labels):
++            mismatched = labels.index[labels != gaca_labels].tolist()
++            raise ValueError(
++                f"{dataset}: {name} ground-truth EC labels differ from GaCA "
++                f"for {len(mismatched)} protein IDs"
++            )
+     gaca = gaca.rename(
+         columns={
+             "protein_id": "id",
+@@ -118,10 +139,6 @@ def load_joined(
+     )
+     if len(joined) != len(gaca):
+         raise RuntimeError(f"{dataset}: retrieval predictions do not cover every GaCA protein")
+-    if not (joined["true_ec"].astype(str) == joined["true_ec_blastp"].astype(str)).all():
+-        raise RuntimeError(f"{dataset}: BLASTp labels do not align")
+-    if not (joined["true_ec"].astype(str) == joined["true_ec_foldseek"].astype(str)).all():
+-        raise RuntimeError(f"{dataset}: Foldseek labels do not align")
+     joined["true_ec"] = joined["true_ec"].astype(str)
+     for column in ("gaca_pred_ec", "blast_pred_ec", "foldseek_pred_ec"):
+         joined[column] = joined[column].fillna("").astype(str)
+diff --git a/gaca/evaluate.py b/gaca/evaluate.py
+index 52ab033..9e2b1ad 100644
+--- a/gaca/evaluate.py
++++ b/gaca/evaluate.py
+@@ -76,6 +76,7 @@ def main():
+ 
+     runner.seed_everything(42)
+     train_dataset, test_datasets = runner.load_datasets(args.feature_root)
++    runner.validate_final_protocol(train_dataset, test_datasets)
+     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+     model = runner.GaCA(
+         num_classes=len(train_dataset.label_encoder.classes_),
+@@ -101,7 +102,7 @@ def main():
+             collate_fn=runner.collate_batch,
+         )
+         metrics, predictions, probabilities, gates = runner.evaluate_test(
+-            model, dataset, loader, device, args.amp
++            model, dataset, loader, device, bool(args.amp and device.type == "cuda")
+         )
+         if gates is None:
+             raise RuntimeError("GaCA inference did not return gate vectors")
+diff --git a/gaca/train.py b/gaca/train.py
+index ff508b1..fe83509 100644
+--- a/gaca/train.py
++++ b/gaca/train.py
+@@ -193,6 +193,10 @@ def save_or_load_split(
+     if split_path.exists():
+         split = pd.read_csv(split_path, dtype={"protein_id": str})
+         validate_split(split, dataset.ids)
++        if "ec_label" in split:
++            labels_by_id = dict(zip(dataset.ids, dataset.labels_text))
++            if not split["protein_id"].map(labels_by_id).equals(split["ec_label"]):
++                raise ValueError("Fixed-split labels differ from the training labels")
+         id_to_index = {protein_id: index for index, protein_id in enumerate(dataset.ids)}
+         fitting = np.asarray(
+             [id_to_index[item] for item in split.loc[split["split"] == "fit", "protein_id"]],
+@@ -426,6 +430,7 @@ def run_model(
+ ):
+     model_dir = output_dir / name
+     model_dir.mkdir(parents=True, exist_ok=True)
++    write_environment(model_dir, args, device)
+     batch_size = (
+         args.cross_attention_batch_size
+         if name == "cross_attention"
+diff --git a/preprocessing/export_effective.py b/preprocessing/export_effective.py
+index cac64ce..6b8f00a 100644
+--- a/preprocessing/export_effective.py
++++ b/preprocessing/export_effective.py
+@@ -5,6 +5,7 @@ import json
+ from pathlib import Path
+ 
+ import pandas as pd
++from common.protocol import validate_frame, validate_reference_tables
+ 
+ STORE_NAMES = {
+     "train": ("seq_train", "str_train"),
+@@ -41,6 +42,7 @@ def main():
+     tables = {}
+     for split, filename in CSV_NAMES.items():
+         table = pd.read_csv(args.data_root / filename, dtype={"Entry": str})
++        validate_frame(table, args.data_root / filename)
+         table["Entry"] = table["Entry"].astype(str)
+         table["EC number"] = table["EC number"].astype(str)
+         tables[split] = table.loc[table["Entry"].isin(available[split])].copy()
+@@ -54,6 +56,8 @@ def main():
+     counts = {split: len(table) for split, table in tables.items()}
+     if not args.skip_count_check and counts != EXPECTED_COUNTS:
+         raise RuntimeError(f"Expected {EXPECTED_COUNTS}, obtained {counts}")
++    if not args.skip_count_check:
++        validate_reference_tables(tables)
+     for split, table in tables.items():
+         table.to_csv(args.output_dir / CSV_NAMES[split], index=False)
+     record = {
+@@ -71,4 +75,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()
+diff --git a/requirements.txt b/requirements.txt
+index d8b60d8..a658227 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -9,6 +9,8 @@ seaborn
+ biopython
+ biotite
+ fair-esm==2.0.0
++torch-geometric==2.5.3
++# Install the matching torch-scatter binary as documented in README.md.
+ requests
+ tqdm
+-openpyxl
+\ No newline at end of file
++openpyxl
+diff --git a/tests/test_release_guards.py b/tests/test_release_guards.py
+new file mode 100644
+index 0000000..cff23af
+--- /dev/null
++++ b/tests/test_release_guards.py
+@@ -0,0 +1,100 @@
++import json
++import pickle
++import tempfile
++import unittest
++from pathlib import Path
++
++import numpy as np
++import pandas as pd
++
++from baselines.classical.train import model_and_parameters
++from common.protocol import validate_reference_tables
++from embeddings.build_store import as_matrix, build_store
++from evaluation.paired_statistics import load_joined
++
++ROOT = Path(__file__).resolve().parents[1]
++
++
++class ReleaseGuards(unittest.TestCase):
++    def test_reference_and_label_mutation(self):
++        tables = {s: pd.read_csv(ROOT / 'metadata' / f'effective_{s}.csv')
++                  for s in ('train', 'lt30', '30_50')}
++        validate_reference_tables(tables)
++        tables['lt30'].loc[0, 'EC number'] = '0.0.0.0'
++        with self.assertRaises(ValueError):
++            validate_reference_tables(tables)
++
++    def test_row_order_mutation(self):
++        table = pd.read_csv(ROOT / 'metadata/effective_train.csv').iloc[::-1]
++        with self.assertRaises(ValueError):
++            validate_reference_tables({'train': table})
++
++    def test_shapes(self):
++        self.assertEqual(as_matrix(np.ones((3, 1, 512)), 512).shape, (3, 512))
++        for a in (np.ones((512, 3)), np.ones((512,)), np.empty((0, 512))):
++            with self.assertRaises(ValueError):
++                as_matrix(a, 512)
++
++    def test_store_cache_invalidation(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            source = root / 'features.pkl'
++            source.write_bytes(pickle.dumps({'A': np.ones((2, 512), np.float16)}))
++            build_store('test', source, 512, root)
++            metadata = json.loads((root / 'test/metadata.json').read_text())
++            for key in ('source', 'source_size_bytes', 'source_mtime_ns', 'feature_dim'):
++                self.assertIn(key, metadata)
++            build_store('test', source, 512, root)
++            values = np.load(root / 'test/values.npy')
++            np.testing.assert_array_equal(values, np.ones((2, 512)))
++            source.write_bytes(pickle.dumps({'A': np.ones((3, 512), np.float16)}))
++            with self.assertRaises(ValueError):
++                build_store('test', source, 512, root)
++
++    def test_canonical_duplicate_ids(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            source = root / 'features.pkl'
++            source.write_bytes(pickle.dumps({1: np.ones((2,512)), '1': np.ones((2,512))}))
++            with self.assertRaises(ValueError):
++                build_store('test', source, 512, root)
++
++    def test_invalid_feature_values(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            source = root / 'features.pkl'
++            for value in (np.nan, 1e10):
++                source.write_bytes(pickle.dumps({'A': np.full((2,512),value)}))
++                with self.assertRaises(ValueError):
++                    build_store('test', source, 512, root)
++
++    def test_paired_extra_id(self):
++        refs = ROOT / 'reference_results'
++        counts = pd.read_csv(ROOT / 'metadata/effective_train.csv')['EC number'].value_counts().to_dict()
++        joined = load_joined('lt30', refs/'neural/gaca', refs/'retrieval/blastp', refs/'retrieval/foldseek', counts)
++        self.assertEqual(len(joined), 243)
++        with tempfile.TemporaryDirectory() as temp:
++            base = pd.read_csv(refs/'retrieval/blastp/predictions_lt30.csv')
++            extra = base.iloc[[0]].copy()
++            extra['protein_id'] = 'unexpected-protein'
++            pd.concat([base, extra]).to_csv(Path(temp)/'predictions_lt30.csv',index=False)
++            with self.assertRaises(ValueError):
++                load_joined('lt30', refs/'neural/gaca', Path(temp), refs/'retrieval/foldseek', counts)
++
++    def test_paired_true_label_mismatch(self):
++        refs = ROOT / 'reference_results'
++        counts = pd.read_csv(ROOT / 'metadata/effective_train.csv')['EC number'].value_counts().to_dict()
++        with tempfile.TemporaryDirectory() as temp:
++            base = pd.read_csv(refs/'retrieval/blastp/predictions_lt30.csv')
++            base.loc[0, 'true_ec'] = '0.0.0.0'
++            base.to_csv(Path(temp)/'predictions_lt30.csv', index=False)
++            with self.assertRaisesRegex(ValueError, 'ground-truth EC labels differ'):
++                load_joined('lt30', refs/'neural/gaca', Path(temp), refs/'retrieval/foldseek', counts)
++
++    def test_svm_original_solver(self):
++        model, _ = model_and_parameters('svm')
++        self.assertIs(model.dual, True)
++
++
++if __name__ == '__main__':
++    unittest.main()

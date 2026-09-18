@@ -1,0 +1,43 @@
+{
+  "checkpoint": "D:\\EC\\GaCA-73.25-release\\checkpoints\\gaca_73.25.pth",
+  "device": "cuda",
+  "classes": 3811,
+  "subsets": {
+    "lt30": {
+      "samples": 243,
+      "level_1_accuracy": 0.9012345679012346,
+      "level_2_accuracy": 0.8436213991769548,
+      "level_3_accuracy": 0.8189300411522634,
+      "level_4_accuracy": 0.7325102880658436,
+      "macro_f1_reference_classes": 0.7172050729839674,
+      "mcc": 0.7321635438662001,
+      "reference_class_count": 199,
+      "probability_shape": [
+        243,
+        3811
+      ],
+      "gate_shape": [
+        243,
+        512
+      ]
+    },
+    "30_50": {
+      "samples": 477,
+      "level_1_accuracy": 0.9622641509433962,
+      "level_2_accuracy": 0.9287211740041929,
+      "level_3_accuracy": 0.89937106918239,
+      "level_4_accuracy": 0.8490566037735849,
+      "macro_f1_reference_classes": 0.8334046193327631,
+      "mcc": 0.8489297507775689,
+      "reference_class_count": 334,
+      "probability_shape": [
+        477,
+        3811
+      ],
+      "gate_shape": [
+        477,
+        512
+      ]
+    }
+  }
+}

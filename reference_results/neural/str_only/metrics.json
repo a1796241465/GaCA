@@ -1,0 +1,35 @@
+{
+  "model": "str_only",
+  "trainable_parameters": 2548196,
+  "fitting_samples": 12303,
+  "validation_samples": 1368,
+  "full_refit_samples": 13671,
+  "best_epoch": 111,
+  "best_validation_accuracy": 0.8355263157894737,
+  "batch_size": 128,
+  "amp": true,
+  "test_results": {
+    "lt30": {
+      "samples": 243,
+      "level_1_accuracy": 0.8683127572016461,
+      "level_2_accuracy": 0.8106995884773662,
+      "level_3_accuracy": 0.7695473251028807,
+      "level_4_accuracy": 0.6584362139917695,
+      "macro_f1_reference_classes": 0.632735104091888,
+      "mcc": 0.6579768006620568,
+      "reference_class_count": 199,
+      "dataset": "lt30"
+    },
+    "30_50": {
+      "samples": 477,
+      "level_1_accuracy": 0.9350104821802935,
+      "level_2_accuracy": 0.8951781970649895,
+      "level_3_accuracy": 0.870020964360587,
+      "level_4_accuracy": 0.7945492662473794,
+      "macro_f1_reference_classes": 0.7632591958939264,
+      "mcc": 0.7943300606010536,
+      "reference_class_count": 334,
+      "dataset": "30_50"
+    }
+  }
+}

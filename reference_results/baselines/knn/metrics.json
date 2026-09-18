@@ -1,0 +1,41 @@
+{
+  "model": "knn",
+  "training_samples": 13671,
+  "classes": 3811,
+  "parameters": {
+    "n_neighbors": 1,
+    "metric": "cosine",
+    "n_jobs": -1
+  },
+  "feature_definition": "row-wise L2-normalised mean-pooled ESM-2 sequence embeddings",
+  "test_results": {
+    "lt30": {
+      "samples": 243,
+      "level_1_accuracy": 0.6419753086419753,
+      "level_2_accuracy": 0.5473251028806584,
+      "level_3_accuracy": 0.49382716049382713,
+      "level_4_accuracy": 0.3868312757201646,
+      "macro_f1_reference_classes": 0.3827470686767169,
+      "mcc": 0.3862819668538707,
+      "reference_class_count": 199
+    },
+    "30_50": {
+      "samples": 477,
+      "level_1_accuracy": 0.8280922431865828,
+      "level_2_accuracy": 0.7526205450733753,
+      "level_3_accuracy": 0.7148846960167715,
+      "level_4_accuracy": 0.6352201257861635,
+      "macro_f1_reference_classes": 0.6259338465925292,
+      "mcc": 0.6348656926546413,
+      "reference_class_count": 334
+    }
+  },
+  "elapsed_seconds": 0.24556183815002441,
+  "environment": {
+    "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.4.2"
+  }
+}

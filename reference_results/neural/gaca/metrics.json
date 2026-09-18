@@ -1,0 +1,35 @@
+{
+  "model": "gaca",
+  "trainable_parameters": 4156645,
+  "fitting_samples": 12303,
+  "validation_samples": 1368,
+  "full_refit_samples": 13671,
+  "best_epoch": 75,
+  "best_validation_accuracy": 0.8516081871345029,
+  "batch_size": 128,
+  "amp": true,
+  "test_results": {
+    "lt30": {
+      "samples": 243,
+      "level_1_accuracy": 0.9012345679012346,
+      "level_2_accuracy": 0.8436213991769548,
+      "level_3_accuracy": 0.8189300411522634,
+      "level_4_accuracy": 0.7325102880658436,
+      "macro_f1_reference_classes": 0.7172050729839674,
+      "mcc": 0.7321635438662001,
+      "reference_class_count": 199,
+      "dataset": "lt30"
+    },
+    "30_50": {
+      "samples": 477,
+      "level_1_accuracy": 0.9622641509433962,
+      "level_2_accuracy": 0.9287211740041929,
+      "level_3_accuracy": 0.89937106918239,
+      "level_4_accuracy": 0.8490566037735849,
+      "macro_f1_reference_classes": 0.8334046193327631,
+      "mcc": 0.8489297507775689,
+      "reference_class_count": 334,
+      "dataset": "30_50"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "mean_vector_gate",
+  "trainable_parameters": 3926755,
+  "fitting_samples": 12303,
+  "validation_samples": 1368,
+  "full_refit_samples": 13671,
+  "best_epoch": 96,
+  "best_validation_accuracy": 0.8399122807017544,
+  "batch_size": 128,
+  "amp": true,
+  "test_results": {
+    "lt30": {
+      "samples": 243,
+      "level_1_accuracy": 0.8888888888888888,
+      "level_2_accuracy": 0.8148148148148148,
+      "level_3_accuracy": 0.7860082304526749,
+      "level_4_accuracy": 0.6954732510288066,
+      "macro_f1_reference_classes": 0.6819095477386934,
+      "mcc": 0.6949730021972469,
+      "reference_class_count": 199,
+      "dataset": "lt30"
+    },
+    "30_50": {
+      "samples": 477,
+      "level_1_accuracy": 0.9580712788259959,
+      "level_2_accuracy": 0.9140461215932913,
+      "level_3_accuracy": 0.8846960167714885,
+      "level_4_accuracy": 0.8238993710691824,
+      "macro_f1_reference_classes": 0.8120045623039636,
+      "mcc": 0.8237780133466288,
+      "reference_class_count": 334,
+      "dataset": "30_50"
+    }
+  }
+}

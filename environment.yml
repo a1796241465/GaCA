@@ -1,0 +1,25 @@
+name: gaca
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pytorch=2.2.2
+  - pytorch-cuda=12.1
+  - numpy=1.26.4
+  - pandas=2.3.2
+  - scikit-learn=1.6.1
+  - scipy
+  - matplotlib
+  - seaborn
+  - biopython
+  - biotite
+  - requests
+  - tqdm
+  - openpyxl
+  - pip:
+      - fair-esm==2.0.0
+      - torch-geometric==2.5.3
+      - lightgbm==4.6.0
