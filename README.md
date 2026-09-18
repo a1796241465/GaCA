@@ -100,9 +100,11 @@ archived results.
 A fresh CARE/AlphaFold download, fresh ESM-2/ESM-IF1 extraction, complete neural
 and classical-model retraining, BLASTp/Foldseek searches, and cross-environment
 identity of training trajectories have not been validated. Checkpoint replay is not
-presented as a fresh end-to-end reproduction. See
-[`docs/INDEPENDENT_AUDIT.md`](docs/INDEPENDENT_AUDIT.md) for the evidence and
-remaining limitations.
+presented as a fresh end-to-end reproduction. See the
+[English independent audit](docs/INDEPENDENT_AUDIT_EN.md) and the
+[Chinese independent audit](docs/INDEPENDENT_AUDIT.md) for the evidence and
+remaining limitations. The English report is provided first for international users;
+both reports document the same audit findings.
 
 The benchmark splits come from the
 [CARE paper](https://proceedings.neurips.cc/paper_files/paper/2024/hash/05a7ad45d75a3082d7a3a70de8743140-Abstract-Datasets_and_Benchmarks_Track.html).
@@ -129,6 +131,16 @@ tests/                release guards and orchestration tests
 legacy/               original research code retained for provenance
 docs/                 audit evidence and the manual command-by-command pipeline
 ```
+
+## Citation
+
+If you use this repository, please cite the software using the repository's
+[`CITATION.cff`](CITATION.cff). A paper citation will be added after the associated
+manuscript is formally published.
+
+## License
+
+This project is released under the MIT License. See [LICENSE](LICENSE).
 
 ## Advanced / Manual Pipeline
 
