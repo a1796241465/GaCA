@@ -1,4 +1,4 @@
-# GaCA
+# GaCA: Adaptive Sequence-Structure Fusion for Level-4 EC Prediction under Low Sequence Identity
 
 GaCA is a sequence-structure fusion model for Level-4 enzyme commission (EC)
 prediction under low sequence identity. This repository contains the audited code,
