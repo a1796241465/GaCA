@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
-title: "GaCA: Geometry-aware Cross-modal Aggregation for Enzyme Function Prediction"
+title: "GaCA: Adaptive Sequence-Structure Fusion for Level-4 EC Prediction under Low Sequence Identity"
 type: software
 authors:
   - family-names: Li
